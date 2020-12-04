@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,7 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 		if (ObjectUtils.isEmpty(user)) {
 			LOG.error("User: {} is Empty",user);
 			throw new NotFoundException("USER IS NULL");
+			throw new NotFoundException("USER OR PASSWORD IS NULL");
 		} else {
 			setCreateInfo(user);
 			userRepository.save(user);

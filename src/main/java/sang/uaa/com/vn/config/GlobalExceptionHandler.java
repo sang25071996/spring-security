@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -54,31 +55,47 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
 	@ExceptionHandler(value = BadRequestException.class)
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
 	public ResponseEntity<ResponJson> badRequestException(BadRequestException badRequestException) {
+		String message = badRequestException.getMessage();
 		LOG.error(ERROR_MGS, badRequestException.getMessage(), badRequestException);
 		SysError ex = badRequestException.getSysError();
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-				.body(ObjectUtils.isNotEmpty(ex) ? new ResponJson(HttpStatus.BAD_REQUEST.getReasonPhrase())
-						: new ResponJson(HttpStatus.BAD_REQUEST.getReasonPhrase(), ex));
+		if (ObjectUtils.isEmpty(ex)) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponJson(message));
+		} else {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body(new ResponJson(HttpStatus.BAD_REQUEST.getReasonPhrase(), ex));
+		}
 	}
 	
 	@ResponseBody
 	@ExceptionHandler(value = AuthorizationException.class)
 	@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
 	public ResponseEntity<ResponJson> authorizationException(AuthorizationException authorizationException) {
+		String message = authorizationException.getMessage();
 		LOG.error(ERROR_MGS, authorizationException.getMessage(), authorizationException);
-		return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-				.body(new ResponJson(HttpStatus.UNAUTHORIZED.getReasonPhrase()));
+		SysError ex = authorizationException.getSysError();
+		if (ObjectUtils.isEmpty(ex)) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ResponJson(message));
+		} else {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+					.body(new ResponJson(HttpStatus.UNAUTHORIZED.getReasonPhrase(), ex));
+		}
+		
 	}
 	
 	@ResponseBody
 	@ExceptionHandler(value = NotFoundException.class)
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)
 	public ResponseEntity<ResponJson> notFoundException(NotFoundException notFoundException) {
+		String message = notFoundException.getMessage();
 		LOG.error(ERROR_MGS, notFoundException.getMessage(), notFoundException);
 		SysError ex = notFoundException.getSysError();
-		return ResponseEntity.status(HttpStatus.NOT_FOUND)
-				.body(ObjectUtils.isNotEmpty(ex) ? new ResponJson(HttpStatus.NOT_FOUND.getReasonPhrase(), ex)
-						: new ResponJson(HttpStatus.NOT_FOUND.getReasonPhrase()));
+		if (ObjectUtils.isEmpty(ex)) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponJson(message));
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND)
+					.body(new ResponJson(HttpStatus.NOT_FOUND.getReasonPhrase(), ex));
+		}
+		
 	}
 	
 	@Override
