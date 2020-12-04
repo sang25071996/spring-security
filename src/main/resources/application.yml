@@ -1,0 +1,33 @@
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+    sang.uaa.com.vn: TRACE
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%t] %-5level %C - %msg%n"
+jwt:
+  secret:
+    sang
+
+server:
+  port: 9999
+spring:
+  jpa:
+    properties:
+     hibernate:
+      ddl-auto: none
+      enable_lazy_load_no_trans: true
+    show-sql: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/sang-demo-uaa
+    username: postgres
+    password: 123456
+    testOnBorrow: true
+    testWhileIdle: true
+    validationQuery: SELECT 1
+
+  flyway:
+    locations: classpath:postgressql/062020
+    schemas: users
+    baseline-on-migrate: true

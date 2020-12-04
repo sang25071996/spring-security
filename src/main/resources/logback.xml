@@ -1,0 +1,75 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<configuration>
+	<!-- use config default loggin in application.yml -->
+	<include resource="org/springframework/boot/logging/logback/base.xml"/>    
+	<!-- declare variable global -->
+	<property name="LOGS" value="logs" />
+	<appender name="sang-uaa" class="ch.qos.logback.core.FileAppender">
+	 
+		<file>${LOGS}/sang-uaa.log</file>
+	  <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	    <Pattern>
+	      %d{HH:mm:ss.SSS} [%t] %-5level %C - %msg%n
+	    </Pattern>
+	  </encoder>
+	  
+	</appender>
+	<appender name="sang-uaa-info" class="ch.qos.logback.core.FileAppender">
+	 
+		<file>${LOGS}/info.log</file>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	  <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	    <Pattern>
+	      %d{HH:mm:ss.SSS} [%t] %-5level %C - %msg%n
+	    </Pattern>
+	  </encoder>
+	  
+	</appender>
+	<appender name="sang-uaa-debug" class="ch.qos.logback.core.FileAppender">
+	 
+	<file>${LOGS}/debug.log</file>
+	<filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>DEBUG</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
+	<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	  <Pattern>
+	    %d{HH:mm:ss.SSS} [%t] %-5level %C - %msg%n
+	  </Pattern>
+	</encoder>
+	  
+	</appender>
+	<appender name="sang-uaa-error" class="ch.qos.logback.core.FileAppender">
+	 
+	<file>${LOGS}/error.log</file>
+	<filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>ERROR</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
+	<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	  <Pattern>
+	    %d{HH:mm:ss.SSS} [%t] %-5level %C - %msg%n
+	  </Pattern>
+	</encoder>
+	  
+	</appender>
+   <!-- LOG LEVEL -->
+   <root>
+      <appender-ref ref = "sang-uaa"/>
+   </root>
+   <root level = "INFO" additivity="false">
+      <appender-ref ref = "sang-uaa-info"/>
+   </root>
+   <root level = "DEBUG" additivity="false">
+      <appender-ref ref = "sang-uaa-debug"/>
+   </root>
+   <root level = "ERROR" additivity="false">
+      <appender-ref ref = "sang-uaa-error"/>
+   </root>
+</configuration>

@@ -1,0 +1,247 @@
+21:40:50.876 [main] INFO  org.springframework.boot.StartupInfoLogger - Starting DemoApplication on MacBook-Pro-cua-Macbook.local with PID 3302 (/Users/macbook/Downloads/sang-uaa/target/classes started by macbook in /Users/macbook/Downloads/sang-uaa)
+21:40:50.919 [main] DEBUG org.springframework.boot.StartupInfoLogger - Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+21:40:50.920 [main] INFO  org.springframework.boot.SpringApplication - No active profile set, falling back to default profiles: default
+21:40:51.662 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+21:40:51.727 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 55ms. Found 2 JPA repository interfaces.
+21:40:52.411 [main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$80222a52] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+21:40:52.445 [main] INFO  org.springframework.ws.soap.addressing.server.AbstractAddressingEndpointMapping - Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+21:40:52.814 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9999 (http)
+21:40:52.823 [main] INFO  org.apache.juli.logging.DirectJDKLog - Starting service [Tomcat]
+21:40:52.824 [main] INFO  org.apache.juli.logging.DirectJDKLog - Starting Servlet engine: [Apache Tomcat/9.0.36]
+21:40:52.895 [main] INFO  org.apache.juli.logging.DirectJDKLog - Initializing Spring embedded WebApplicationContext
+21:40:52.895 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1938 ms
+21:40:53.068 [main] INFO  org.dozer.config.GlobalSettings - Trying to find Dozer configuration file: dozer.properties
+21:40:53.074 [main] WARN  org.dozer.config.GlobalSettings - Dozer configuration file not found: dozer.properties.  Using defaults for all Dozer global properties.
+21:40:53.075 [main] INFO  org.dozer.DozerInitializer - Initializing Dozer. Version: 5.5.0, Thread Name: main
+21:40:53.077 [main] INFO  org.dozer.jmx.JMXPlatformImpl - Dozer JMX MBean [org.dozer.jmx:type=DozerStatisticsController] auto registered with the Platform MBean Server
+21:40:53.078 [main] INFO  org.dozer.jmx.JMXPlatformImpl - Dozer JMX MBean [org.dozer.jmx:type=DozerAdminController] auto registered with the Platform MBean Server
+21:40:53.079 [main] INFO  org.dozer.DozerBeanMapper - Initializing a new instance of dozer bean mapper.
+21:40:53.187 [main] INFO  org.flywaydb.core.internal.logging.slf4j.Slf4jLog - Flyway Community Edition 5.2.4 by Boxfuse
+21:40:53.196 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:40:53.275 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+21:40:53.283 [main] INFO  org.flywaydb.core.internal.logging.slf4j.Slf4jLog - Database: jdbc:postgresql://localhost:5432/sang-demo-uaa (PostgreSQL 12.3)
+21:40:53.292 [main] WARN  org.flywaydb.core.internal.logging.slf4j.Slf4jLog - Flyway upgrade recommended: PostgreSQL 12.3 is newer than this version of Flyway and support has not been tested.
+21:40:53.334 [main] INFO  org.flywaydb.core.internal.logging.slf4j.Slf4jLog - Successfully validated 1 migration (execution time 00:00.022s)
+21:40:53.347 [main] INFO  org.flywaydb.core.internal.logging.slf4j.Slf4jLog - Current version of schema "users": 1
+21:40:53.348 [main] INFO  org.flywaydb.core.internal.logging.slf4j.Slf4jLog - Schema "users" is up to date. No migration necessary.
+21:40:53.525 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+21:40:53.563 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.17.Final
+21:40:53.678 [main] INFO  org.hibernate.annotations.common.reflection.java.JavaReflectionManager - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+21:40:53.786 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+21:40:54.393 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+21:40:54.400 [main] INFO  org.springframework.orm.jpa.AbstractEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+21:40:54.921 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+21:40:55.047 [main] DEBUG org.springframework.web.filter.GenericFilterBean - Filter 'jwtRequestFilter' configured for use
+21:40:55.394 [main] INFO  org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+21:40:55.465 [main] INFO  springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+21:40:55.553 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/v2/api-docs'], []
+21:40:55.553 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/configuration/ui'], []
+21:40:55.553 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/swagger-resources/**'], []
+21:40:55.553 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/configuration/security'], []
+21:40:55.554 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/swagger-ui.html'], []
+21:40:55.554 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/webjars/**'], []
+21:40:55.577 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3ba96967, org.springframework.security.web.context.SecurityContextPersistenceFilter@35cf91df, org.springframework.security.web.header.HeaderWriterFilter@73db7df0, org.springframework.security.web.authentication.logout.LogoutFilter@42c55978, sang.uaa.com.vn.config.security.jwt.JwtRequestFilter@4bdef487, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@2d9df336, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7f02b2d4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2568611c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5764d421, org.springframework.security.web.session.SessionManagementFilter@1c66cd02, org.springframework.security.web.access.ExceptionTranslationFilter@36cdcae0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@b2e1df3]
+21:40:55.660 [main] INFO  org.springframework.scheduling.concurrent.ExecutorConfigurationSupport - Initializing ExecutorService 'applicationTaskExecutor'
+21:40:55.915 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 9999 (http) with context path ''
+21:40:55.916 [main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+21:40:55.950 [main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+21:40:55.983 [main] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+21:40:56.110 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_1
+21:40:56.111 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_2
+21:40:56.150 [main] INFO  org.springframework.boot.StartupInfoLogger - Started DemoApplication in 5.625 seconds (JVM running for 6.403)
+21:40:56.591 [RMI TCP Connection(3)-127.0.0.1] INFO  org.apache.juli.logging.DirectJDKLog - Initializing Spring DispatcherServlet 'dispatcherServlet'
+21:40:56.592 [RMI TCP Connection(3)-127.0.0.1] INFO  org.springframework.web.servlet.FrameworkServlet - Initializing Servlet 'dispatcherServlet'
+21:40:56.599 [RMI TCP Connection(3)-127.0.0.1] INFO  org.springframework.web.servlet.FrameworkServlet - Completed initialization in 7 ms
+21:41:02.580 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.security.jwt.JwtRequestFilter - JWT Token begin Bearer String
+21:41:02.846 [http-nio-9999-exec-1] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Start Service Method: sang.uaa.com.vn.service.impl.UserServiceImpl.loadUserByUsername() with argument[s] = [thoa]
+21:41:02.913 [http-nio-9999-exec-1] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Exit Service Method: sang.uaa.com.vn.service.impl.UserServiceImpl.loadUserByUsername() with result = sang.uaa.com.vn.entites.Authorizer@575afe06
+21:41:02.941 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Request URL: http://localhost:9999/user
+21:41:02.941 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Start time: 1606747262941
+21:41:02.942 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - User thoa has been login
+21:41:02.954 [http-nio-9999-exec-1] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Start Controller Method: sang.uaa.com.vn.controller.UserController.findAllUser() with argument[s] = []
+21:41:02.958 [http-nio-9999-exec-1] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Start Service Method: sang.uaa.com.vn.service.impl.UserServiceImpl.findAllUser() with argument[s] = []
+21:41:03.098 [http-nio-9999-exec-1] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Exit Service Method: sang.uaa.com.vn.service.impl.UserServiceImpl.findAllUser() with result = [UserDto(Id=7, username=thoa, password=$2a$10$5GcWQi9nyILUNXweQkbyBuFwYF4VRZh8l.TLVLWIk7O8pBYBYVmEK, roles=[RoleDto(id=10, name=ROLE_ADMIN)]), UserDto(Id=8, username=sang, password=$2a$10$nOrqw5R7MZVMSyxPd8paT.wixYaIwjFWJkS6t.nlltBD2UQvV9K56, roles=[RoleDto(id=11, name=ROLE_USER)]), UserDto(Id=9, username=sang, password=$2a$10$bPCyxHIWBuxTnkaIsc4.Y.VmkOT0Tt8cZkVYpI1Iw3LrBBTJY43H., roles=[RoleDto(id=10, name=ROLE_ADMIN)]), UserDto(Id=10, username=kimanh, password=$2a$10$jt02NyjZmHYp79Gt3ILS4Oj/HqrXpgamHL8QSnj3MqF9JK2Kn.3Aq, roles=[RoleDto(id=11, name=ROLE_USER)])]
+21:41:03.105 [http-nio-9999-exec-1] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Exit Controller Method: sang.uaa.com.vn.controller.UserController.findAllUser() with result = <200 OK OK,sang.uaa.com.vn.common.ResponJson@64ea0129,[]>
+21:41:03.144 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Request URL: http://localhost:9999/user
+21:41:03.145 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - End Time: 1606747263144
+21:41:03.145 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Time Taken: 203
+21:43:20.436 [http-nio-9999-exec-3] INFO  sang.uaa.com.vn.config.security.jwt.JwtRequestFilter - JWT Token begin Bearer String
+21:43:20.440 [http-nio-9999-exec-3] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Start Service Method: sang.uaa.com.vn.service.impl.UserServiceImpl.loadUserByUsername() with argument[s] = [thoa]
+21:43:20.446 [http-nio-9999-exec-3] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Exit Service Method: sang.uaa.com.vn.service.impl.UserServiceImpl.loadUserByUsername() with result = sang.uaa.com.vn.entites.Authorizer@3594069c
+21:43:20.454 [http-nio-9999-exec-3] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Request URL: http://localhost:9999/role
+21:43:20.454 [http-nio-9999-exec-3] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Start time: 1606747400454
+21:43:20.454 [http-nio-9999-exec-3] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - User thoa has been login
+21:43:20.466 [http-nio-9999-exec-3] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Start Controller Method: sang.uaa.com.vn.controller.RoleController.getRoleById() with argument[s] = [10]
+21:43:20.469 [http-nio-9999-exec-3] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Start Service Method: sang.uaa.com.vn.service.impl.RoleServiceImpl.getRoleById() with argument[s] = [10]
+21:43:20.478 [http-nio-9999-exec-3] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Exit Service Method: sang.uaa.com.vn.service.impl.RoleServiceImpl.getRoleById() with result = RoleDto(id=10, name=ROLE_ADMIN)
+21:43:20.478 [http-nio-9999-exec-3] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Exit Controller Method: sang.uaa.com.vn.controller.RoleController.getRoleById() with result = <200 OK OK,sang.uaa.com.vn.common.ResponJson@63962cc8,[]>
+21:43:20.481 [http-nio-9999-exec-3] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Request URL: http://localhost:9999/role
+21:43:20.482 [http-nio-9999-exec-3] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - End Time: 1606747400481
+21:43:20.482 [http-nio-9999-exec-3] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Time Taken: 27
+21:44:04.766 [http-nio-9999-exec-4] INFO  sang.uaa.com.vn.config.security.jwt.JwtRequestFilter - JWT Token begin Bearer String
+21:44:04.768 [http-nio-9999-exec-4] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Start Service Method: sang.uaa.com.vn.service.impl.UserServiceImpl.loadUserByUsername() with argument[s] = [thoa]
+21:44:04.772 [http-nio-9999-exec-4] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Exit Service Method: sang.uaa.com.vn.service.impl.UserServiceImpl.loadUserByUsername() with result = sang.uaa.com.vn.entites.Authorizer@2554609f
+21:44:04.777 [http-nio-9999-exec-4] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Request URL: http://localhost:9999/role
+21:44:04.778 [http-nio-9999-exec-4] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Start time: 1606747444777
+21:44:04.779 [http-nio-9999-exec-4] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - User thoa has been login
+21:44:04.781 [http-nio-9999-exec-4] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Start Controller Method: sang.uaa.com.vn.controller.RoleController.getRoleById() with argument[s] = [10]
+21:44:04.783 [http-nio-9999-exec-4] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Start Service Method: sang.uaa.com.vn.service.impl.RoleServiceImpl.getRoleById() with argument[s] = [10]
+21:44:04.787 [http-nio-9999-exec-4] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Exit Service Method: sang.uaa.com.vn.service.impl.RoleServiceImpl.getRoleById() with result = RoleDto(id=10, name=ROLE_ADMIN)
+21:44:04.788 [http-nio-9999-exec-4] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Exit Controller Method: sang.uaa.com.vn.controller.RoleController.getRoleById() with result = <200 OK OK,sang.uaa.com.vn.common.ResponJson@59357a0,[]>
+21:44:04.789 [http-nio-9999-exec-4] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Request URL: http://localhost:9999/role
+21:44:04.790 [http-nio-9999-exec-4] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - End Time: 1606747444789
+21:44:04.790 [http-nio-9999-exec-4] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Time Taken: 12
+21:52:04.897 [RMI TCP Connection(21)-127.0.0.1] INFO  org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+21:52:05.077 [RMI TCP Connection(21)-127.0.0.1] INFO  org.springframework.scheduling.concurrent.ExecutorConfigurationSupport - Shutting down ExecutorService 'applicationTaskExecutor'
+21:52:05.080 [RMI TCP Connection(21)-127.0.0.1] INFO  org.springframework.orm.jpa.AbstractEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+21:52:05.083 [RMI TCP Connection(21)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+21:52:05.086 [RMI TCP Connection(21)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+21:52:06.851 [main] INFO  org.springframework.boot.StartupInfoLogger - Starting DemoApplication on MacBook-Pro-cua-Macbook.local with PID 3436 (/Users/macbook/Downloads/sang-uaa/target/classes started by macbook in /Users/macbook/Downloads/sang-uaa)
+21:52:06.854 [main] DEBUG org.springframework.boot.StartupInfoLogger - Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+21:52:06.856 [main] INFO  org.springframework.boot.SpringApplication - No active profile set, falling back to default profiles: default
+21:52:07.808 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+21:52:07.858 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 41ms. Found 2 JPA repository interfaces.
+21:52:08.523 [main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$4c53b1e3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+21:52:08.553 [main] INFO  org.springframework.ws.soap.addressing.server.AbstractAddressingEndpointMapping - Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+21:52:08.982 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9999 (http)
+21:52:08.991 [main] INFO  org.apache.juli.logging.DirectJDKLog - Starting service [Tomcat]
+21:52:08.992 [main] INFO  org.apache.juli.logging.DirectJDKLog - Starting Servlet engine: [Apache Tomcat/9.0.36]
+21:52:09.068 [main] INFO  org.apache.juli.logging.DirectJDKLog - Initializing Spring embedded WebApplicationContext
+21:52:09.069 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2115 ms
+21:52:09.214 [main] INFO  org.dozer.config.GlobalSettings - Trying to find Dozer configuration file: dozer.properties
+21:52:09.221 [main] WARN  org.dozer.config.GlobalSettings - Dozer configuration file not found: dozer.properties.  Using defaults for all Dozer global properties.
+21:52:09.223 [main] INFO  org.dozer.DozerInitializer - Initializing Dozer. Version: 5.5.0, Thread Name: main
+21:52:09.225 [main] INFO  org.dozer.jmx.JMXPlatformImpl - Dozer JMX MBean [org.dozer.jmx:type=DozerStatisticsController] auto registered with the Platform MBean Server
+21:52:09.227 [main] INFO  org.dozer.jmx.JMXPlatformImpl - Dozer JMX MBean [org.dozer.jmx:type=DozerAdminController] auto registered with the Platform MBean Server
+21:52:09.228 [main] INFO  org.dozer.DozerBeanMapper - Initializing a new instance of dozer bean mapper.
+21:52:09.351 [main] INFO  org.flywaydb.core.internal.logging.slf4j.Slf4jLog - Flyway Community Edition 5.2.4 by Boxfuse
+21:52:09.358 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:52:09.447 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+21:52:09.457 [main] INFO  org.flywaydb.core.internal.logging.slf4j.Slf4jLog - Database: jdbc:postgresql://localhost:5432/sang-demo-uaa (PostgreSQL 12.3)
+21:52:09.465 [main] WARN  org.flywaydb.core.internal.logging.slf4j.Slf4jLog - Flyway upgrade recommended: PostgreSQL 12.3 is newer than this version of Flyway and support has not been tested.
+21:52:09.514 [main] INFO  org.flywaydb.core.internal.logging.slf4j.Slf4jLog - Successfully validated 1 migration (execution time 00:00.023s)
+21:52:09.522 [main] INFO  org.flywaydb.core.internal.logging.slf4j.Slf4jLog - Current version of schema "users": 1
+21:52:09.522 [main] INFO  org.flywaydb.core.internal.logging.slf4j.Slf4jLog - Schema "users" is up to date. No migration necessary.
+21:52:09.671 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+21:52:09.710 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.17.Final
+21:52:09.821 [main] INFO  org.hibernate.annotations.common.reflection.java.JavaReflectionManager - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+21:52:09.927 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+21:52:10.512 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+21:52:10.518 [main] INFO  org.springframework.orm.jpa.AbstractEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+21:52:10.947 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+21:52:11.056 [main] DEBUG org.springframework.web.filter.GenericFilterBean - Filter 'jwtRequestFilter' configured for use
+21:52:11.447 [main] INFO  org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+21:52:11.521 [main] INFO  springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+21:52:11.619 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/v2/api-docs'], []
+21:52:11.620 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/configuration/ui'], []
+21:52:11.620 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/swagger-resources/**'], []
+21:52:11.620 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/configuration/security'], []
+21:52:11.620 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/swagger-ui.html'], []
+21:52:11.620 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/webjars/**'], []
+21:52:11.650 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4a3516fd, org.springframework.security.web.context.SecurityContextPersistenceFilter@1d535b78, org.springframework.security.web.header.HeaderWriterFilter@51fa09c7, org.springframework.security.web.authentication.logout.LogoutFilter@60484429, sang.uaa.com.vn.config.security.jwt.JwtRequestFilter@29592929, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@4fb99927, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@55a66bbf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@355b53cc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3ba96967, org.springframework.security.web.session.SessionManagementFilter@44a485bc, org.springframework.security.web.access.ExceptionTranslationFilter@74787609, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3c6fc4cd]
+21:52:11.750 [main] INFO  org.springframework.scheduling.concurrent.ExecutorConfigurationSupport - Initializing ExecutorService 'applicationTaskExecutor'
+21:52:12.032 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 9999 (http) with context path ''
+21:52:12.033 [main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+21:52:12.051 [main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+21:52:12.078 [main] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+21:52:12.202 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_1
+21:52:12.204 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_2
+21:52:12.243 [main] INFO  org.springframework.boot.StartupInfoLogger - Started DemoApplication in 5.731 seconds (JVM running for 6.482)
+21:52:13.221 [RMI TCP Connection(3)-127.0.0.1] INFO  org.apache.juli.logging.DirectJDKLog - Initializing Spring DispatcherServlet 'dispatcherServlet'
+21:52:13.221 [RMI TCP Connection(3)-127.0.0.1] INFO  org.springframework.web.servlet.FrameworkServlet - Initializing Servlet 'dispatcherServlet'
+21:52:13.229 [RMI TCP Connection(3)-127.0.0.1] INFO  org.springframework.web.servlet.FrameworkServlet - Completed initialization in 8 ms
+21:52:23.963 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.security.jwt.JwtRequestFilter - JWT Token begin Bearer String
+21:52:24.125 [http-nio-9999-exec-1] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Start Service Method: sang.uaa.com.vn.service.impl.UserServiceImpl.loadUserByUsername() with argument[s] = [thoa]
+21:52:24.195 [http-nio-9999-exec-1] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Exit Service Method: sang.uaa.com.vn.service.impl.UserServiceImpl.loadUserByUsername() with result = sang.uaa.com.vn.entites.Authorizer@39fb6afc
+21:52:24.224 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Request URL: http://localhost:9999/role
+21:52:24.224 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Start time: 1606747944223
+21:52:24.224 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - User thoa has been login
+21:52:24.248 [http-nio-9999-exec-1] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Start Controller Method: sang.uaa.com.vn.controller.RoleController.getRoleById() with argument[s] = [10]
+21:52:24.255 [http-nio-9999-exec-1] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Start Service Method: sang.uaa.com.vn.service.impl.RoleServiceImpl.getRoleById() with argument[s] = [10]
+21:52:24.343 [http-nio-9999-exec-1] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Exit Service Method: sang.uaa.com.vn.service.impl.RoleServiceImpl.getRoleById() with result = RoleDto(id=10, name=ROLE_ADMIN)
+21:52:24.349 [http-nio-9999-exec-1] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Exit Controller Method: sang.uaa.com.vn.controller.RoleController.getRoleById() with result = <200 OK OK,sang.uaa.com.vn.common.ResponJson@4796aa9e,[]>
+21:52:24.383 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Request URL: http://localhost:9999/role
+21:52:24.384 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - End Time: 1606747944383
+21:52:24.384 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Time Taken: 160milliseconds
+21:55:50.267 [RMI TCP Connection(14)-127.0.0.1] INFO  org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+21:55:50.312 [RMI TCP Connection(14)-127.0.0.1] INFO  org.springframework.scheduling.concurrent.ExecutorConfigurationSupport - Shutting down ExecutorService 'applicationTaskExecutor'
+21:55:50.316 [RMI TCP Connection(14)-127.0.0.1] INFO  org.springframework.orm.jpa.AbstractEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+21:55:50.318 [RMI TCP Connection(14)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+21:55:50.321 [RMI TCP Connection(14)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+21:55:52.308 [main] INFO  org.springframework.boot.StartupInfoLogger - Starting DemoApplication on MacBook-Pro-cua-Macbook.local with PID 3472 (/Users/macbook/Downloads/sang-uaa/target/classes started by macbook in /Users/macbook/Downloads/sang-uaa)
+21:55:52.311 [main] DEBUG org.springframework.boot.StartupInfoLogger - Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+21:55:52.312 [main] INFO  org.springframework.boot.SpringApplication - No active profile set, falling back to default profiles: default
+21:55:53.146 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+21:55:53.186 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 34ms. Found 2 JPA repository interfaces.
+21:55:53.771 [main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$8af37766] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+21:55:53.811 [main] INFO  org.springframework.ws.soap.addressing.server.AbstractAddressingEndpointMapping - Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+21:55:54.167 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9999 (http)
+21:55:54.177 [main] INFO  org.apache.juli.logging.DirectJDKLog - Starting service [Tomcat]
+21:55:54.178 [main] INFO  org.apache.juli.logging.DirectJDKLog - Starting Servlet engine: [Apache Tomcat/9.0.36]
+21:55:54.248 [main] INFO  org.apache.juli.logging.DirectJDKLog - Initializing Spring embedded WebApplicationContext
+21:55:54.248 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1837 ms
+21:55:54.375 [main] INFO  org.dozer.config.GlobalSettings - Trying to find Dozer configuration file: dozer.properties
+21:55:54.380 [main] WARN  org.dozer.config.GlobalSettings - Dozer configuration file not found: dozer.properties.  Using defaults for all Dozer global properties.
+21:55:54.382 [main] INFO  org.dozer.DozerInitializer - Initializing Dozer. Version: 5.5.0, Thread Name: main
+21:55:54.384 [main] INFO  org.dozer.jmx.JMXPlatformImpl - Dozer JMX MBean [org.dozer.jmx:type=DozerStatisticsController] auto registered with the Platform MBean Server
+21:55:54.385 [main] INFO  org.dozer.jmx.JMXPlatformImpl - Dozer JMX MBean [org.dozer.jmx:type=DozerAdminController] auto registered with the Platform MBean Server
+21:55:54.386 [main] INFO  org.dozer.DozerBeanMapper - Initializing a new instance of dozer bean mapper.
+21:55:54.489 [main] INFO  org.flywaydb.core.internal.logging.slf4j.Slf4jLog - Flyway Community Edition 5.2.4 by Boxfuse
+21:55:54.496 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:55:54.579 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+21:55:54.588 [main] INFO  org.flywaydb.core.internal.logging.slf4j.Slf4jLog - Database: jdbc:postgresql://localhost:5432/sang-demo-uaa (PostgreSQL 12.3)
+21:55:54.596 [main] WARN  org.flywaydb.core.internal.logging.slf4j.Slf4jLog - Flyway upgrade recommended: PostgreSQL 12.3 is newer than this version of Flyway and support has not been tested.
+21:55:54.641 [main] INFO  org.flywaydb.core.internal.logging.slf4j.Slf4jLog - Successfully validated 1 migration (execution time 00:00.023s)
+21:55:54.648 [main] INFO  org.flywaydb.core.internal.logging.slf4j.Slf4jLog - Current version of schema "users": 1
+21:55:54.649 [main] INFO  org.flywaydb.core.internal.logging.slf4j.Slf4jLog - Schema "users" is up to date. No migration necessary.
+21:55:54.777 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+21:55:54.818 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.17.Final
+21:55:54.956 [main] INFO  org.hibernate.annotations.common.reflection.java.JavaReflectionManager - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+21:55:55.097 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+21:55:55.713 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+21:55:55.724 [main] INFO  org.springframework.orm.jpa.AbstractEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+21:55:56.317 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+21:55:56.434 [main] DEBUG org.springframework.web.filter.GenericFilterBean - Filter 'jwtRequestFilter' configured for use
+21:55:56.850 [main] INFO  org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+21:55:56.909 [main] INFO  springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+21:55:56.996 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/v2/api-docs'], []
+21:55:56.997 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/configuration/ui'], []
+21:55:56.997 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/swagger-resources/**'], []
+21:55:56.997 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/configuration/security'], []
+21:55:56.998 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/swagger-ui.html'], []
+21:55:56.998 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/webjars/**'], []
+21:55:57.024 [main] INFO  org.springframework.security.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7cdb05aa, org.springframework.security.web.context.SecurityContextPersistenceFilter@56d742ad, org.springframework.security.web.header.HeaderWriterFilter@735167e1, org.springframework.security.web.authentication.logout.LogoutFilter@7f02b2d4, sang.uaa.com.vn.config.security.jwt.JwtRequestFilter@17a77a7e, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@2568611c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5730b513, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4da9da6c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2079fcfc, org.springframework.security.web.session.SessionManagementFilter@21a0795f, org.springframework.security.web.access.ExceptionTranslationFilter@60b4c754, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7c200e57]
+21:55:57.113 [main] INFO  org.springframework.scheduling.concurrent.ExecutorConfigurationSupport - Initializing ExecutorService 'applicationTaskExecutor'
+21:55:57.398 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 9999 (http) with context path ''
+21:55:57.399 [main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+21:55:57.416 [main] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+21:55:57.441 [main] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+21:55:57.565 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_1
+21:55:57.568 [main] INFO  springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_2
+21:55:57.607 [main] INFO  org.springframework.boot.StartupInfoLogger - Started DemoApplication in 5.66 seconds (JVM running for 6.595)
+21:55:58.843 [RMI TCP Connection(3)-127.0.0.1] INFO  org.apache.juli.logging.DirectJDKLog - Initializing Spring DispatcherServlet 'dispatcherServlet'
+21:55:58.843 [RMI TCP Connection(3)-127.0.0.1] INFO  org.springframework.web.servlet.FrameworkServlet - Initializing Servlet 'dispatcherServlet'
+21:55:58.853 [RMI TCP Connection(3)-127.0.0.1] INFO  org.springframework.web.servlet.FrameworkServlet - Completed initialization in 10 ms
+21:56:10.871 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.security.jwt.JwtRequestFilter - JWT Token begin Bearer String
+21:56:11.034 [http-nio-9999-exec-1] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Start Service Method: sang.uaa.com.vn.service.impl.UserServiceImpl.loadUserByUsername() with argument[s] = [thoa]
+21:56:11.148 [http-nio-9999-exec-1] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Exit Service Method: sang.uaa.com.vn.service.impl.UserServiceImpl.loadUserByUsername() with result = sang.uaa.com.vn.entites.Authorizer@2eb9d730
+21:56:11.205 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Request URL: http://localhost:9999/role
+21:56:11.208 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Start time: 1606748171205
+21:56:11.209 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - User thoa has been login
+21:56:11.244 [http-nio-9999-exec-1] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Start Controller Method: sang.uaa.com.vn.controller.RoleController.getRoleById() with argument[s] = [10]
+21:56:11.253 [http-nio-9999-exec-1] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Start Service Method: sang.uaa.com.vn.service.impl.RoleServiceImpl.getRoleById() with argument[s] = [10]
+21:56:11.378 [http-nio-9999-exec-1] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Exit Service Method: sang.uaa.com.vn.service.impl.RoleServiceImpl.getRoleById() with result = RoleDto(id=10, name=ROLE_ADMIN)
+21:56:11.386 [http-nio-9999-exec-1] DEBUG sang.uaa.com.vn.config.interceptor.AbstractInterceptor - Exit Controller Method: sang.uaa.com.vn.controller.RoleController.getRoleById() with result = <200 OK OK,sang.uaa.com.vn.common.ResponJson@78b5cdc2,[]>
+21:56:11.418 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Request URL: http://localhost:9999/role
+21:56:11.419 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - End Time: 1606748171418
+21:56:11.419 [http-nio-9999-exec-1] INFO  sang.uaa.com.vn.config.interceptor.RequestInterceptor - Time Taken: 213 milliseconds
+22:05:42.646 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool$HouseKeeper - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m17s910ms).
+22:14:33.078 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool$HouseKeeper - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8m50s438ms).
+22:17:38.628 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool$HouseKeeper - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m5s550ms).
+22:26:28.667 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool$HouseKeeper - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8m50s39ms).
+22:29:12.293 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool$HouseKeeper - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m43s626ms).
+22:30:10.169 [RMI TCP Connection(19)-127.0.0.1] INFO  org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+22:30:10.220 [RMI TCP Connection(19)-127.0.0.1] INFO  org.springframework.scheduling.concurrent.ExecutorConfigurationSupport - Shutting down ExecutorService 'applicationTaskExecutor'
+22:30:10.224 [RMI TCP Connection(19)-127.0.0.1] INFO  org.springframework.orm.jpa.AbstractEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+22:30:10.229 [RMI TCP Connection(19)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+22:30:10.232 [RMI TCP Connection(19)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
