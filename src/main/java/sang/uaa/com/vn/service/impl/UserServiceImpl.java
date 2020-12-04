@@ -65,7 +65,6 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 		user.setRoles(roles);
 		if (ObjectUtils.isEmpty(user)) {
 			LOG.error("User: {} is Empty",user);
-			throw new NotFoundException("USER IS NULL");
 			throw new NotFoundException("USER OR PASSWORD IS NULL");
 		} else {
 			setCreateInfo(user);
