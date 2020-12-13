@@ -27,9 +27,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import sang.uaa.com.vn.common.ResponJson;
 import sang.uaa.com.vn.common.SysError;
-import sang.uaa.com.vn.utils.exception.AuthorizationException;
-import sang.uaa.com.vn.utils.exception.BadRequestException;
-import sang.uaa.com.vn.utils.exception.NotFoundException;
+import sang.uaa.com.vn.exception.AuthorizationException;
+import sang.uaa.com.vn.exception.BadRequestException;
+import sang.uaa.com.vn.exception.NotFoundException;
 
 /**
  * <p>Handler Global Exception</p>

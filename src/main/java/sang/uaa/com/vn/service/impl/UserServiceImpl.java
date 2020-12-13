@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +20,9 @@ import sang.uaa.com.vn.dto.UserDto;
 import sang.uaa.com.vn.entites.Authorizer;
 import sang.uaa.com.vn.entites.Role;
 import sang.uaa.com.vn.entites.User;
+import sang.uaa.com.vn.exception.NotFoundException;
 import sang.uaa.com.vn.repository.UserRepository;
 import sang.uaa.com.vn.service.UserService;
-import sang.uaa.com.vn.utils.exception.NotFoundException;
 
 @Service
 public class UserServiceImpl extends BaseService implements UserService, UserDetailsService {
@@ -36,7 +35,7 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 	PasswordEncoder passwordEncoder;
 	
 	@Override
-	public Authorizer loadUserByUsername(String username) {
+	public Authorizer loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findByUsername(username);
 		if (ObjectUtils.isEmpty(user)) {
 			throw new UsernameNotFoundException(username);

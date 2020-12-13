@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import sang.uaa.com.vn.utils.exception.NotFoundException;
+import sang.uaa.com.vn.exception.NotFoundException;
 
 
 /**

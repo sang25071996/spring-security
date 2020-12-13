@@ -15,9 +15,9 @@ import sang.uaa.com.vn.common.service.BaseService;
 import sang.uaa.com.vn.constant.Constants;
 import sang.uaa.com.vn.dto.RoleDto;
 import sang.uaa.com.vn.entites.Role;
+import sang.uaa.com.vn.exception.NotFoundException;
 import sang.uaa.com.vn.repository.RoleRepository;
 import sang.uaa.com.vn.service.RoleService;
-import sang.uaa.com.vn.utils.exception.NotFoundException;
 
 @Service
 public class RoleServiceImpl extends BaseService implements RoleService {

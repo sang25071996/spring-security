@@ -26,7 +26,7 @@ public class AbstractInterceptor {
 	
 	/**
 	 * 
-	 * <p>In Controller Layer</p>
+	 * <p>intercepted Invoke Controller Layer</p>
 	 * Nov 13, 2020
 	 *-------------------
 	 * @author macbook
@@ -34,7 +34,7 @@ public class AbstractInterceptor {
 	 * @throws Throwable
 	 */
 	@Around("within(sang.uaa.com.vn.controller..*)")
-	public Object inControllerLayer(ProceedingJoinPoint point) throws Throwable {
+	public Object interceptedInvokeControllerLayer(ProceedingJoinPoint point) throws Throwable {
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("Start Controller Method: {}.{}() with argument[s] = {}", point.getSignature().getDeclaringTypeName(),
 					point.getSignature().getName(), Arrays.toString(point.getArgs()));
@@ -55,7 +55,7 @@ public class AbstractInterceptor {
 	
 	/**
 	 * 
-	 * <p>In Service Layer</p>
+	 * <p>intercepted Invoke Service Layer</p>
 	 * <p>Nov 30, 2020</p>
 	 * -------------------
 	 * @author macbook
@@ -64,7 +64,7 @@ public class AbstractInterceptor {
 	 * @throws Throwable
 	 */
 	@Around("within(sang.uaa.com.vn.service.impl..*)")
-	public Object inServiceLayer(ProceedingJoinPoint point) throws Throwable {
+	public Object interceptedInvokeServiceLayer(ProceedingJoinPoint point) throws Throwable {
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("Start Service Method: {}.{}() with argument[s] = {}", point.getSignature().getDeclaringTypeName(),
 					point.getSignature().getName(), Arrays.toString(point.getArgs()));

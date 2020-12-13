@@ -13,9 +13,9 @@ import sang.uaa.com.vn.common.ResponJson;
 import sang.uaa.com.vn.common.controller.BaseController;
 import sang.uaa.com.vn.constant.Constants;
 import sang.uaa.com.vn.dto.RoleDto;
+import sang.uaa.com.vn.exception.BadRequestException;
+import sang.uaa.com.vn.exception.NotFoundException;
 import sang.uaa.com.vn.service.impl.RoleServiceImpl;
-import sang.uaa.com.vn.utils.exception.BadRequestException;
-import sang.uaa.com.vn.utils.exception.NotFoundException;
 
 @Controller
 @RequestMapping(Constants.ApiURL.API_ROLE)

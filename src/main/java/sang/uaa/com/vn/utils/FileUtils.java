@@ -4,7 +4,7 @@ import java.io.File;
 
 import org.apache.commons.lang3.StringUtils;
 
-import sang.uaa.com.vn.utils.exception.NotFoundException;
+import sang.uaa.com.vn.exception.NotFoundException;
 
 public class FileUtils {
 	

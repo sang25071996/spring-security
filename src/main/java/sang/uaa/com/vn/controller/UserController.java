@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import sang.uaa.com.vn.common.ResponJson;
 import sang.uaa.com.vn.common.controller.BaseController;
 import sang.uaa.com.vn.dto.UserDto;
+import sang.uaa.com.vn.exception.NotFoundException;
 import sang.uaa.com.vn.service.RoleService;
 import sang.uaa.com.vn.service.UserService;
-import sang.uaa.com.vn.utils.exception.NotFoundException;
 
 @Controller
 @RequestMapping("user")
