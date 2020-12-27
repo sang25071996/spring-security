@@ -2,7 +2,7 @@ package sang.uaa.com.vn.common.controller;
 
 import org.springframework.http.ResponseEntity;
 
-import sang.uaa.com.vn.common.ResponJson;
+import sang.uaa.com.vn.common.dto.ResponJson;
 
 /**
  * <p>BaseController response Entity</p>

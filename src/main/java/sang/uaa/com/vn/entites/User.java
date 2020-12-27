@@ -14,11 +14,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "USER", schema = "USERS")
-@Data
+@Getter
+@Setter
 public class User extends BaseEntity {
 	
 	/** serialVersionUID */

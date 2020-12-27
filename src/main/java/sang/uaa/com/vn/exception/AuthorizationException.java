@@ -1,6 +1,6 @@
 package sang.uaa.com.vn.exception;
 
-import sang.uaa.com.vn.common.SysError;
+import sang.uaa.com.vn.common.dto.SysError;
 
 /**
  * 

@@ -35,7 +35,7 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 	PasswordEncoder passwordEncoder;
 	
 	@Override
-	public Authorizer loadUserByUsername(String username) throws UsernameNotFoundException {
+	public Authorizer loadUserByUsername(String username) {
 		User user = userRepository.findByUsername(username);
 		if (ObjectUtils.isEmpty(user)) {
 			throw new UsernameNotFoundException(username);

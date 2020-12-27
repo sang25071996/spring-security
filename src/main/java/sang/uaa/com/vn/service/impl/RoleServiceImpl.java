@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import sang.uaa.com.vn.common.ErrorParam;
-import sang.uaa.com.vn.common.SysError;
+import sang.uaa.com.vn.common.dto.ErrorParam;
+import sang.uaa.com.vn.common.dto.SysError;
 import sang.uaa.com.vn.common.service.BaseService;
 import sang.uaa.com.vn.constant.Constants;
 import sang.uaa.com.vn.dto.RoleDto;
@@ -50,14 +50,14 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	
 	@Override
 	public RoleDto edit(RoleDto roleDto) {
-		Role role;
+		Role role = new Role();
 		if (ObjectUtils.isEmpty(roleDto.getId())) {
 			throw new NotFoundException(new SysError("ID NOT FOUND", new ErrorParam("id")));
 		} else {
-			role = roleRepository.findByRoleId(roleDto.getId());
+//			role = roleRepository.findByRoleId(roleDto.getId());
+			role.setName(convertRole(roleDto.getName()));
+			setUpdateInfo(role);
 			if (!ObjectUtils.isEmpty(role)) {
-				role.setName(convertRole(roleDto.getName()));
-				setUpdateInfo(role);
 				roleRepository.save(role);
 			} else {
 				throw new NotFoundException(new SysError("ROLE NOT FOUND", new ErrorParam("id")));

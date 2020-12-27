@@ -18,6 +18,8 @@ import lombok.Data;
 @Data
 public class Token implements Serializable {
 	
+	/** serialVersionUID */
+	private static final long serialVersionUID = 1L;
 	@JsonProperty("access_token")
 	private String accessToken;
 	@JsonProperty("token_type")

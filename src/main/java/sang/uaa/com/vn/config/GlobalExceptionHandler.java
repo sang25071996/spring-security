@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -25,8 +24,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import sang.uaa.com.vn.common.ResponJson;
-import sang.uaa.com.vn.common.SysError;
+import sang.uaa.com.vn.common.dto.ResponJson;
+import sang.uaa.com.vn.common.dto.SysError;
 import sang.uaa.com.vn.exception.AuthorizationException;
 import sang.uaa.com.vn.exception.BadRequestException;
 import sang.uaa.com.vn.exception.NotFoundException;

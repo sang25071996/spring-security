@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 public class UserDto {
 
-	private Long Id;
+	private Long id;
 	private String username;
 	private String password;
 	private Set<RoleDto> roles = new HashSet<>();

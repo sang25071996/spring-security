@@ -4,6 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import sang.uaa.com.vn.exception.NotFoundException;
 
 
@@ -13,6 +16,8 @@ import sang.uaa.com.vn.exception.NotFoundException;
  * Nov 13, 2020
  */
 public class DateTimeUtils {
+	
+	private static Logger LOGGER = LoggerFactory.getLogger(DateTimeUtils.class);
 	
 	private DateTimeUtils() {
 		
@@ -46,7 +51,7 @@ public class DateTimeUtils {
 	 * 
 	 * <p>parse date format to string</p>
 	 * Example: new Date() -> YYYY/MM/DD
-	 * Nov 14, 2020
+	 * <p>Nov 14, 2020</p>
 	 *-------------------
 	 * @author macbook
 	 * @param date
@@ -55,7 +60,34 @@ public class DateTimeUtils {
 	 */
 	public static String dateFormat(Date date, String format) {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
-		String dateStr = simpleDateFormat.format(date);
-		return dateStr;
+		return simpleDateFormat.format(date);
+	}
+	
+	/**
+	 * 
+	 * <p>is Date</p>
+	 * <p>Dec 27, 2020</p>
+	 * -------------------
+	 * @author macbook
+	 * @param date String
+	 * @param format String
+	 * @return boolean
+	 */
+	public static boolean isDate(String date, String format) {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+		boolean valid = false;
+		try {
+			simpleDateFormat.parse(date);
+			// strict mode - check 30 or 31 days, leap year
+			simpleDateFormat.setLenient(false);
+			valid = true;
+			
+		} catch (ParseException e) {
+			String message = MessageUtils.getMessage("MSG1", date);
+			LOGGER.error(message);
+			valid = false;
+		}
+		
+		return valid;
 	}
 }

@@ -1,4 +1,4 @@
-package sang.uaa.com.vn.common;
+package sang.uaa.com.vn.common.dto;
 
 import java.io.Serializable;
 
@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorParam implements Serializable {
 	
+	/** serialVersionUID */
+	private static final long serialVersionUID = 1L;
 	private String field;
 
 	public ErrorParam() {

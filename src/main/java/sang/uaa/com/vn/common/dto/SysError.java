@@ -1,4 +1,4 @@
-package sang.uaa.com.vn.common;
+package sang.uaa.com.vn.common.dto;
 
 import java.io.Serializable;
 
@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SysError implements Serializable {
+	/** serialVersionUID */
+	private static final long serialVersionUID = 1L;
 	private String code;
 	private ErrorParam errorParam;
 

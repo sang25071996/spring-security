@@ -24,7 +24,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class RequestInterceptor extends HandlerInterceptorAdapter {
 	
-	private static Logger LOG = LoggerFactory.getLogger(RequestInterceptor.class);
+	private static final Logger LOG = LoggerFactory.getLogger(RequestInterceptor.class);
 	private Long startTime;
 	private Long endTime;
 	

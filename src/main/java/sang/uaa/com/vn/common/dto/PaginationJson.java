@@ -1,4 +1,4 @@
-package sang.uaa.com.vn.common;
+package sang.uaa.com.vn.common.dto;
 
 import java.util.List;
 

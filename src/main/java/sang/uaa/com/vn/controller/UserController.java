@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import sang.uaa.com.vn.common.ResponJson;
 import sang.uaa.com.vn.common.controller.BaseController;
+import sang.uaa.com.vn.common.dto.ResponJson;
 import sang.uaa.com.vn.dto.UserDto;
-import sang.uaa.com.vn.exception.NotFoundException;
 import sang.uaa.com.vn.service.RoleService;
 import sang.uaa.com.vn.service.UserService;
 
@@ -25,12 +24,12 @@ public class UserController extends BaseController {
 	@Autowired
 	RoleService roleService;
 	@PostMapping()
-	public ResponseEntity<ResponJson> createUser(@RequestBody UserDto userDto) throws NotFoundException {
+	public ResponseEntity<ResponJson> createUser(@RequestBody UserDto userDto) {
 		return getResponseEntity(userService.createUser(userDto));
 	}
 	
 	@GetMapping(path = "/id")
-	public ResponseEntity<ResponJson> getRoleId(Long id) throws NotFoundException {
+	public ResponseEntity<ResponJson> getRoleId(Long id) {
 		return getResponseEntity(roleService.getRoleById(id));
 	}
 
