@@ -50,11 +50,11 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	
 	@Override
 	public RoleDto edit(RoleDto roleDto) {
-		Role role = new Role();
+		Role role;
 		if (ObjectUtils.isEmpty(roleDto.getId())) {
 			throw new NotFoundException(new SysError("ID NOT FOUND", new ErrorParam("id")));
 		} else {
-//			role = roleRepository.findByRoleId(roleDto.getId());
+			role = roleRepository.findByRoleId(roleDto.getId());
 			role.setName(convertRole(roleDto.getName()));
 			setUpdateInfo(role);
 			if (!ObjectUtils.isEmpty(role)) {

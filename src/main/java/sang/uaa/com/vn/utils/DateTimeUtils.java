@@ -17,7 +17,7 @@ import sang.uaa.com.vn.exception.NotFoundException;
  */
 public class DateTimeUtils {
 	
-	private static Logger LOGGER = LoggerFactory.getLogger(DateTimeUtils.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(DateTimeUtils.class);
 	
 	private DateTimeUtils() {
 		
