@@ -23,6 +23,7 @@ import sang.uaa.com.vn.entites.User;
 import sang.uaa.com.vn.exception.NotFoundException;
 import sang.uaa.com.vn.repository.UserRepository;
 import sang.uaa.com.vn.service.UserService;
+import sang.uaa.com.vn.utils.MessageUtils;
 
 @Service
 public class UserServiceImpl extends BaseService implements UserService, UserDetailsService {
@@ -63,8 +64,9 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 		}
 		user.setRoles(roles);
 		if (ObjectUtils.isEmpty(user)) {
-			LOG.error("User: {} is Empty",user);
-			throw new NotFoundException("USER OR PASSWORD IS NULL");
+			String message = MessageUtils.getMessage("MSG_CODE3", "User");
+			LOG.error(message);
+			throw new NotFoundException(MessageUtils.getMessage("MSG_CODE4", new String[] { "User", "Password" }));
 		} else {
 			setCreateInfo(user);
 			userRepository.save(user);

@@ -18,6 +18,7 @@ import sang.uaa.com.vn.entites.Role;
 import sang.uaa.com.vn.exception.NotFoundException;
 import sang.uaa.com.vn.repository.RoleRepository;
 import sang.uaa.com.vn.service.RoleService;
+import sang.uaa.com.vn.utils.MessageUtils;
 
 @Service
 public class RoleServiceImpl extends BaseService implements RoleService {
@@ -52,7 +53,8 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	public RoleDto edit(RoleDto roleDto) {
 		Role role;
 		if (ObjectUtils.isEmpty(roleDto.getId())) {
-			throw new NotFoundException(new SysError("ID NOT FOUND", new ErrorParam("id")));
+			String message = MessageUtils.getMessage("MSG_CODE2", roleDto.getId().toString());
+			throw new NotFoundException(new SysError(message, new ErrorParam("id")));
 		} else {
 			role = roleRepository.findByRoleId(roleDto.getId());
 			role.setName(convertRole(roleDto.getName()));
@@ -60,7 +62,8 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 			if (!ObjectUtils.isEmpty(role)) {
 				roleRepository.save(role);
 			} else {
-				throw new NotFoundException(new SysError("ROLE NOT FOUND", new ErrorParam("id")));
+				String message = MessageUtils.getMessage("MSG_CODE2", "Role");
+				throw new NotFoundException(new SysError(message, new ErrorParam("id")));
 			}
 		}
 		return dozerBeanMapper.map(role, RoleDto.class);
