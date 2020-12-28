@@ -31,4 +31,6 @@ public final class Constants {
 	public static final String AUTHORIZATION_HEADER = "Authorization";
 	public static final String ROLE = "ROLE";
 	public static final String SYSTEM = "macbook";
+	public static final String SLASH = "/";
+	public static final String ENCODING_UTF8 = "UTF-8";
 }
