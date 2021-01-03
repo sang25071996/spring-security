@@ -49,14 +49,14 @@ public class BaseController {
 	
 	@GetMapping(path = "/dowload")
 	public void dowloadFile(HttpServletResponse response, @RequestParam String fileName) {
-		
+	
 		String filePath = "";
 		try {
 			filePath = ResourceUtils.getURL("classpath:file/demo.txt").getPath();
 		} catch (FileNotFoundException e) {
 			LOGGER.error(e.getMessage());
 		}
-		LOGGER.info(filePath);
+		LOGGER.info("File Path: {}", filePath);
 		try (FileInputStream fileInputStream = new FileInputStream(filePath)) {
 			response.setContentType("application/octet-stream; charset=UTF-8");
 			response.setHeader("Content-disposition", "attachment; filename=" + WebUtils.encodeURL(filePath));

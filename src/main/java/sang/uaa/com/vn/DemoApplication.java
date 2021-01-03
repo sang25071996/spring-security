@@ -40,6 +40,6 @@ public class DemoApplication  implements ApplicationListener<ContextRefreshedEve
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		MessageService messageService = MessageService.getInstance();
-		messageService.init("", "message/ApplicationMessage");
+		messageService.init("message/ApplicationMessage");
 	}
 }

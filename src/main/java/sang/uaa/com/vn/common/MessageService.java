@@ -24,18 +24,14 @@ public final class MessageService {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(MessageService.class);
 	
-	private static MessageService messageSevice = new MessageService();
-	
-	private String prefix;
+	private static MessageService messageSevice = null;
 	
 	private ResourceBundle bundle;
+	private MessageService () {
+		
+	}
 	
-	public synchronized void init(String prefix, String propertiesName) {
-		if (prefix == null) {
-			setPrefix("");
-		} else {
-			setPrefix(prefix);
-		}
+	public synchronized void init(String propertiesName) {
 		
 		try {
 			bundle = ResourceBundle.getBundle(propertiesName);
@@ -116,26 +112,12 @@ public final class MessageService {
 	 * -------------------
 	 * 
 	 * @author macbook
-	 * @return messageUtils
+	 * @return messageSevice
 	 */
 	public static MessageService getInstance() {
+		if (messageSevice == null) {
+			messageSevice = new MessageService();
+		}
 		return messageSevice;
-	}
-	
-	/**
-	 * 
-	 * <p>
-	 * set prefix
-	 * </p>
-	 * <p>
-	 * Dec 26, 2020
-	 * </p>
-	 * -------------------
-	 * 
-	 * @author macbook
-	 * @param prefix
-	 */
-	private void setPrefix(String prefix) {
-		this.prefix = prefix;
 	}
 }
