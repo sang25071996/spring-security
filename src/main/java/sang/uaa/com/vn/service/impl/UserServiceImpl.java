@@ -14,7 +14,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import sang.uaa.com.vn.common.MessageEnum;
 import sang.uaa.com.vn.common.service.BaseService;
+import sang.uaa.com.vn.constant.Constants;
 import sang.uaa.com.vn.dto.RoleDto;
 import sang.uaa.com.vn.dto.UserDto;
 import sang.uaa.com.vn.entites.Authorizer;
@@ -64,9 +66,9 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 		}
 		user.setRoles(roles);
 		if (ObjectUtils.isEmpty(user)) {
-			String message = MessageUtils.getMessage("MSG_CODE3", "User");
+			String message = MessageUtils.getMessage(MessageEnum.MSGCODE3.getValue(), Constants.USER_STR);
 			LOG.error(message);
-			throw new NotFoundException(MessageUtils.getMessage("MSG_CODE4", new String[] { "User", "Password" }));
+			throw new NotFoundException(MessageUtils.getMessage(MessageEnum.MSGCODE4.getValue(), new String[] { "User", "Password" }));
 		} else {
 			setCreateInfo(user);
 			userRepository.save(user);

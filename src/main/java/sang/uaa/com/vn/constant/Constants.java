@@ -33,4 +33,8 @@ public final class Constants {
 	public static final String SYSTEM = "macbook";
 	public static final String SLASH = "/";
 	public static final String ENCODING_UTF8 = "UTF-8";
+	public static final String ROLE_STR = "Role";
+	public static final String ID_STR = "Id";
+	public static final String USER_STR = "User";
+	public static final String UNDERLINE = "_";
 }

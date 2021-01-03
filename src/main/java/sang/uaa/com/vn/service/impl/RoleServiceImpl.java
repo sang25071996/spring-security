@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import sang.uaa.com.vn.common.MessageEnum;
 import sang.uaa.com.vn.common.dto.ErrorParam;
 import sang.uaa.com.vn.common.dto.SysError;
 import sang.uaa.com.vn.common.service.BaseService;
@@ -42,8 +43,10 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 		
 		Role role = roleRepository.findByRoleId(id);
 		if (ObjectUtils.isEmpty(role)) {
-			LOG.error("Role {} is Empty", role);
-			throw new NotFoundException(new SysError("ID NOT FOUND", new ErrorParam("id")));
+			String message = MessageUtils.getMessage(MessageEnum.MSGCODE3.getValue(), Constants.ROLE_STR);
+			LOG.error(message);
+			String idMessage = MessageUtils.getMessage(MessageEnum.MSGCODE2.getValue(), Constants.ID_STR);
+			throw new NotFoundException(new SysError(idMessage, new ErrorParam(Constants.ID_STR)));
 		}
 		return dozerBeanMapper.map(role, RoleDto.class);
 		
@@ -53,8 +56,8 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	public RoleDto edit(RoleDto roleDto) {
 		Role role;
 		if (ObjectUtils.isEmpty(roleDto.getId())) {
-			String message = MessageUtils.getMessage("MSG_CODE2", roleDto.getId().toString());
-			throw new NotFoundException(new SysError(message, new ErrorParam("id")));
+			String message = MessageUtils.getMessage(MessageEnum.MSGCODE2.getValue(), roleDto.getId().toString());
+			throw new NotFoundException(new SysError(message, new ErrorParam(Constants.ID_STR)));
 		} else {
 			role = roleRepository.findByRoleId(roleDto.getId());
 			role.setName(convertRole(roleDto.getName()));
@@ -62,8 +65,8 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 			if (!ObjectUtils.isEmpty(role)) {
 				roleRepository.save(role);
 			} else {
-				String message = MessageUtils.getMessage("MSG_CODE2", "Role");
-				throw new NotFoundException(new SysError(message, new ErrorParam("id")));
+				String message = MessageUtils.getMessage(MessageEnum.MSGCODE2.getValue(), Constants.ROLE_STR);
+				throw new NotFoundException(new SysError(message, new ErrorParam(Constants.ID_STR)));
 			}
 		}
 		return dozerBeanMapper.map(role, RoleDto.class);
@@ -78,6 +81,6 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	}
 	
 	private String convertRole(String role) {
-		return String.join("_", Constants.ROLE, role.toUpperCase());
+		return String.join(Constants.UNDERLINE, Constants.ROLE, role.toUpperCase());
 	}
 }

@@ -27,8 +27,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JwtRequestFilter jwtRequestFilter;
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder authenticationManager) throws Exception {
+	@Override
+	public void configure(AuthenticationManagerBuilder authenticationManager) throws Exception {
 		authenticationManager.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
 	}
 
