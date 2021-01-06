@@ -2,6 +2,7 @@ package sang.uaa.com.vn.utils;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import sang.uaa.com.vn.exception.NotFoundException;
@@ -38,6 +39,24 @@ public class FileUtils {
 			throw new NotFoundException("File not found");
 		}
 		File file = new File(filePath);
+		if (!file.exists()) {
+			throw new NotFoundException("File is not exist");
+		}
+		return file.getName();
+	}
+	/**
+	 * 
+	 * <p>Get file name</p>
+	 * <p>Jan 3, 2021</p>
+	 * -------------------
+	 * @author macbook
+	 * @param file
+	 * @return fileName
+	 */
+	public static String getFileName(File file) {
+		if (ObjectUtils.isEmpty(file)) {
+			throw new NotFoundException("File not found");
+		}
 		if (!file.exists()) {
 			throw new NotFoundException("File is not exist");
 		}

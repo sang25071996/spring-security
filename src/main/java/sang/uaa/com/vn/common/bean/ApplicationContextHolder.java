@@ -27,6 +27,6 @@ public class ApplicationContextHolder implements ApplicationContextAware {
 	 * @return ApplicationContext
 	 */
 	public static ApplicationContext getApplicationContext() {
-		return contextMap.get(ApplicationContext.class.getClass());
+		return contextMap.get(String.valueOf(ApplicationContext.class.getClass()));
 	}
 }

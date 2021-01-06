@@ -18,6 +18,12 @@ public final class Constants {
 	 */
 	public final class ApiURL {
 		
+		/**
+		 * 
+		 * ApiURL
+		 * Jan 3, 2021
+		 * @author macbook
+		 */
 		private ApiURL() {
 			
 		}
