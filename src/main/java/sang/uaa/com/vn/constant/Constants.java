@@ -43,4 +43,5 @@ public final class Constants {
 	public static final String ID_STR = "Id";
 	public static final String USER_STR = "User";
 	public static final String UNDERLINE = "_";
+	public static final String MEGA_BTYES = "MB";
 }

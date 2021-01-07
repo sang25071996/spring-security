@@ -6,6 +6,7 @@ import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import sang.uaa.com.vn.entites.BaseEntity;
+import sang.uaa.com.vn.exception.ServiceRunTimeException;
 import sang.uaa.com.vn.utils.WebUtils;
 
 public class BaseService {
@@ -74,6 +75,24 @@ public class BaseService {
 		for (E e : listE) {
 			String user = WebUtils.getPricipal();
 			e.setCreatedBy(user);
+		}
+	}
+	
+	/**
+	 * 
+	 * <p>get Instance</p>
+	 * <p>Jan 7, 2021</p>
+	 * -------------------
+	 * @author macbook
+	 * @param <T>
+	 * @param clazz
+	 * @return T
+	 */
+	public static <T> T getInstance(Class<T> clazz) {
+		try {
+			return clazz.newInstance();
+		} catch (InstantiationException | IllegalAccessException e) {
+			throw new ServiceRunTimeException(e);
 		}
 	}
 }

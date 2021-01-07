@@ -1,3 +1,4 @@
+#config pattern log console
 logging:
   level:
     root: INFO
@@ -5,13 +6,29 @@ logging:
     sang.uaa.com.vn: TRACE
   pattern:
     console: "%d{HH:mm:ss.SSS} [%t] %-5level %C - %msg%n"
+    
+#secret key generate token jwt
 jwt:
   secret:
     sang
-
+    
+#config folder upload
+file:
+  upload:
+    path: classpath:file
+    
 server:
   port: 9999
+  
 spring:
+#config upload file
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 10MB
+      max-request-size: 10MB
+      
   jpa:
     properties:
      hibernate:
@@ -26,7 +43,8 @@ spring:
     testOnBorrow: true
     testWhileIdle: true
     validationQuery: SELECT 1
-
+    
+#config migration
   flyway:
     locations: classpath:postgressql/062020
     schemas: users

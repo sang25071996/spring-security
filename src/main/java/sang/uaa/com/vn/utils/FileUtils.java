@@ -62,4 +62,8 @@ public class FileUtils {
 		}
 		return file.getName();
 	}
+	
+	public static String cleanPath(String fileName) {
+		return org.springframework.util.StringUtils.cleanPath(fileName);
+	}
 }
