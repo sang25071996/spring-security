@@ -46,6 +46,6 @@ spring:
     
 #config migration
   flyway:
-    locations: classpath:postgressql/062020
-    schemas: users
+    locations: classpath:postgressql/062020,classpath:postgressql/012021
+    schemas: users,files
     baseline-on-migrate: true
