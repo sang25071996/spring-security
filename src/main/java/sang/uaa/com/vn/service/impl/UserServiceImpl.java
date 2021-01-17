@@ -23,6 +23,7 @@ import sang.uaa.com.vn.entites.Authorizer;
 import sang.uaa.com.vn.entites.Role;
 import sang.uaa.com.vn.entites.User;
 import sang.uaa.com.vn.exception.NotFoundException;
+import sang.uaa.com.vn.mapper.UserMapper;
 import sang.uaa.com.vn.repository.UserRepository;
 import sang.uaa.com.vn.service.UserService;
 import sang.uaa.com.vn.utils.MessageUtils;
@@ -36,6 +37,12 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 	UserRepository userRepository;
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	
+	private UserMapper userMapper;
+	
+	public UserServiceImpl() {
+		this.userMapper = getInstanceMappger(UserMapper.class);
+	}
 	
 	@Override
 	public Authorizer loadUserByUsername(String username) {
@@ -74,7 +81,7 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 			userRepository.save(user);
 		}
 		
-		return dozerBeanMapper.map(user, UserDto.class);
+		return userMapper.userToUserDto(user);
 	}
 	
 	/**
@@ -90,7 +97,8 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 		
 		List<UserDto> userDtos = new ArrayList<>();
 		List<User> users = userRepository.findAll();
-		users.stream().forEach(user -> userDtos.add(dozerBeanMapper.map(user, UserDto.class)));
+		
+		users.stream().forEach(user -> userDtos.add(userMapper.userToUserDto(user)));
 		return userDtos;
 	}
 	

@@ -17,6 +17,7 @@ import sang.uaa.com.vn.constant.Constants;
 import sang.uaa.com.vn.dto.RoleDto;
 import sang.uaa.com.vn.entites.Role;
 import sang.uaa.com.vn.exception.NotFoundException;
+import sang.uaa.com.vn.mapper.RoleMapper;
 import sang.uaa.com.vn.repository.RoleRepository;
 import sang.uaa.com.vn.service.RoleService;
 import sang.uaa.com.vn.utils.MessageUtils;
@@ -25,17 +26,20 @@ import sang.uaa.com.vn.utils.MessageUtils;
 public class RoleServiceImpl extends BaseService implements RoleService {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(RoleServiceImpl.class);
-	
 	@Autowired
 	private RoleRepository roleRepository;
+	private RoleMapper roleMapper;
 	
+	public RoleServiceImpl() {
+		this.roleMapper = getInstanceMappger(RoleMapper.class);
+	}
 	@Override
 	public RoleDto save(RoleDto roleDto) {
 		Role role = new Role();
 		role.setName(convertRole(roleDto.getName()));
 		setCreateInfo(role);
 		role = roleRepository.save(role);
-		return dozerBeanMapper.map(role, RoleDto.class);
+		return this.roleMapper.roleToRoleDto(role);
 	}
 	
 	@Override
@@ -48,7 +52,7 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 			String idMessage = MessageUtils.getMessage(MessageEnum.MSGCODE2.getValue(), Constants.ID_STR);
 			throw new NotFoundException(new SysError(idMessage, new ErrorParam(Constants.ID_STR)));
 		}
-		return dozerBeanMapper.map(role, RoleDto.class);
+		return this.roleMapper.roleToRoleDto(role);
 		
 	}
 	
@@ -76,7 +80,7 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	public List<RoleDto> findAll() {
 		List<RoleDto> roleDtos = new ArrayList<>();
 		List<Role> roles = roleRepository.findAll();
-		roles.forEach(role -> roleDtos.add(dozerBeanMapper.map(role, RoleDto.class)));
+		roles.forEach(role -> roleDtos.add(this.roleMapper.roleToRoleDto(role)));
 		return roleDtos;
 	}
 	

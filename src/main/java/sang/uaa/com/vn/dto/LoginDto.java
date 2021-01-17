@@ -1,5 +1,7 @@
 package sang.uaa.com.vn.dto;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -12,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class LoginDto {
+public class LoginDto  implements Serializable{
 	private String username;
 	private String password;
 }

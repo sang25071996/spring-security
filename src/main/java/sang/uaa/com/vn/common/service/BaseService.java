@@ -3,6 +3,7 @@ package sang.uaa.com.vn.common.service;
 import java.util.List;
 
 import org.dozer.DozerBeanMapper;
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import sang.uaa.com.vn.entites.BaseEntity;
@@ -94,5 +95,9 @@ public class BaseService {
 		} catch (InstantiationException | IllegalAccessException e) {
 			throw new ServiceRunTimeException(e);
 		}
+	}
+	
+	public static <T> T getInstanceMappger(Class<T> clazz) {
+		return Mappers.getMapper(clazz);
 	}
 }

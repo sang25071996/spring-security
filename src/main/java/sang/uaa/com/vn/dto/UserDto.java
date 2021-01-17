@@ -1,5 +1,6 @@
 package sang.uaa.com.vn.dto;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class UserDto {
+public class UserDto  implements Serializable{
 
 	private Long id;
 	private String username;
