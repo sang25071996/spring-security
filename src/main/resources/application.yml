@@ -30,10 +30,29 @@ spring:
       max-request-size: 10MB
       
   jpa:
+    open-in-view: false
     properties:
-     hibernate:
-      ddl-auto: none
-      enable_lazy_load_no_trans: true
+      hibernate:
+        format_sql: true
+        id.new_generator_mappings: true
+        jdbc.batch_size: 25
+        order_inserts: true
+        order_updates: true
+        enable_lazy_load_no_trans: true
+#  jpa:
+#    properties:
+#     hibernate:
+#      format_sql: true
+#      id.new_generator_mappings: true
+#      jdbc.batch_size: 25
+#      order_inserts: true
+#      order_updates: true
+#      ddl-auto: none
+#      enable_lazy_load_no_trans: true
+      
+    hibernate:
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
     show-sql: true
   datasource:
     driver-class-name: org.postgresql.Driver

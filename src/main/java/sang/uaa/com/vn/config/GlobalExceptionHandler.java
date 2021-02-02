@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,14 +14,15 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import sang.uaa.com.vn.common.dto.ResponJson;
 import sang.uaa.com.vn.common.dto.SysError;
-import sang.uaa.com.vn.exception.AuthorizationException;
 import sang.uaa.com.vn.exception.BadRequestException;
 import sang.uaa.com.vn.exception.NotFoundException;
 
 /**
- * <p>Handler Global Exception</p>
- * @author macbook
- * Nov 13, 2020
+ * <p>
+ * Handler Global Exception
+ * </p>
+ * 
+ * @author macbook Nov 13, 2020
  */
 @ControllerAdvice(basePackages = { "sang.uaa.com.vn" })
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -53,17 +55,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 	
 	@ResponseBody
-	@ExceptionHandler(value = AuthorizationException.class)
+	@ExceptionHandler(value = { AuthenticationException.class })
 	@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
-	public ResponseEntity<ResponJson> authorizationException(AuthorizationException authorizationException) {
+	public ResponseEntity<ResponJson> authorizationException(AuthenticationException authorizationException) {
 		String message = authorizationException.getMessage();
 		LOG.error(ERROR_MGS, authorizationException.getMessage(), authorizationException);
-		SysError ex = authorizationException.getSysError();
-		if (ObjectUtils.isEmpty(ex)) {
+	
+		if (ObjectUtils.isEmpty(message)) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ResponJson(message));
 		} else {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-					.body(new ResponJson(HttpStatus.UNAUTHORIZED.getReasonPhrase(), ex));
+					.body(new ResponJson(HttpStatus.UNAUTHORIZED.getReasonPhrase()));
 		}
 		
 	}

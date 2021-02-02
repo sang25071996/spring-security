@@ -22,6 +22,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import sang.uaa.com.vn.common.dto.UploadFile;
@@ -95,6 +96,7 @@ public class FileStorageService extends BaseService {
 	 * @throws IOException 
 	 * @throws IllegalStateException 
 	 */
+	@Transactional(rollbackFor = Exception.class)
 	public UploadFile uploadFile(MultipartFile multipartFile) throws IOException {
 		
 		if (ObjectUtils.isEmpty(multipartFile) || StringUtils.isEmpty(multipartFile.getOriginalFilename())) {
