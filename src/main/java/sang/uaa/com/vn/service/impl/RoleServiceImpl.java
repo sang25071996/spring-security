@@ -33,6 +33,7 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	public RoleServiceImpl() {
 		this.roleMapper = getInstanceMappger(RoleMapper.class);
 	}
+	
 	@Override
 	public RoleDto save(RoleDto roleDto) {
 		Role role = new Role();
@@ -73,7 +74,7 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 				throw new NotFoundException(new SysError(message, new ErrorParam(Constants.ID_STR)));
 			}
 		}
-		return dozerBeanMapper.map(role, RoleDto.class);
+		return this.roleMapper.roleToRoleDto(role);
 	}
 	
 	@Override

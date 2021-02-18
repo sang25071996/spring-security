@@ -18,12 +18,12 @@ import sang.uaa.com.vn.common.MessageService;
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "sang.uaa.com.vn.repository")
 @EnableAspectJAutoProxy(proxyTargetClass = true)
-public class DemoApplication  implements ApplicationListener<ContextRefreshedEvent>{
-
+public class DemoApplication implements ApplicationListener<ContextRefreshedEvent> {
+	
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
-
+	
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
@@ -36,7 +36,7 @@ public class DemoApplication  implements ApplicationListener<ContextRefreshedEve
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
 	}
-
+	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		MessageService messageService = MessageService.getInstance();

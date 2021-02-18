@@ -2,18 +2,13 @@ package sang.uaa.com.vn.common.service;
 
 import java.util.List;
 
-import org.dozer.DozerBeanMapper;
 import org.mapstruct.factory.Mappers;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import sang.uaa.com.vn.entites.BaseEntity;
 import sang.uaa.com.vn.exception.ServiceRunTimeException;
 import sang.uaa.com.vn.utils.WebUtils;
 
 public class BaseService {
-	
-	@Autowired
-	protected DozerBeanMapper dozerBeanMapper;
 	
 	public int checkMaxPageSize(int pageSize) {
 		return -1 == pageSize ? Integer.MAX_VALUE : pageSize;
