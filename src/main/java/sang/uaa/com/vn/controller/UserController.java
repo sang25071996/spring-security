@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import sang.uaa.com.vn.common.controller.BaseController;
 import sang.uaa.com.vn.common.dto.ResponJson;
+import sang.uaa.com.vn.constant.Constants;
 import sang.uaa.com.vn.dto.UserDto;
 import sang.uaa.com.vn.service.RoleService;
 import sang.uaa.com.vn.service.UserService;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping(Constants.ApiURL.API_USER)
 public class UserController extends BaseController {
 
 	@Autowired

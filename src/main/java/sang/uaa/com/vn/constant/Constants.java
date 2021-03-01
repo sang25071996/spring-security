@@ -29,6 +29,7 @@ public final class Constants {
 		}
 		
 		public static final String API_ROLE = "role";
+		public static final String API_USER = "user";
 	}
 
 	public static final String BLANK = "";

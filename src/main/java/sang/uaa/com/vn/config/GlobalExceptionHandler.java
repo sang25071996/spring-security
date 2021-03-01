@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -55,7 +56,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 	
 	@ResponseBody
-	@ExceptionHandler(value = { AuthenticationException.class })
+	@ExceptionHandler(value = { BadCredentialsException.class })
 	@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
 	public ResponseEntity<ResponJson> authorizationException(AuthenticationException authorizationException) {
 		String message = authorizationException.getMessage();
@@ -65,7 +66,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ResponJson(message));
 		} else {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-					.body(new ResponJson(HttpStatus.UNAUTHORIZED.getReasonPhrase()));
+					.body(new ResponJson("Username or Pasword incorrect"));
 		}
 		
 	}
