@@ -55,9 +55,11 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 	
 	/**
 	 * 
-	 * <p>create user</p>
-	 * Nov 13, 2020
-	 *-------------------
+	 * <p>
+	 * create user
+	 * </p>
+	 * Nov 13, 2020 -------------------
+	 * 
 	 * @author macbook
 	 *
 	 */
@@ -75,20 +77,23 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 		if (ObjectUtils.isEmpty(user)) {
 			String message = MessageUtils.getMessage(MessageEnum.MSGCODE3.getValue(), Constants.USER_STR);
 			LOG.error(message);
-			throw new NotFoundException(MessageUtils.getMessage(MessageEnum.MSGCODE4.getValue(), new String[] { "User", "Password" }));
-		} else {
-			setCreateInfo(user);
-			userRepository.save(user);
+			throw new NotFoundException(
+					MessageUtils.getMessage(MessageEnum.MSGCODE4.getValue(), new String[] { "User", "Password" }));
 		}
+		
+		setCreateInfo(user);
+		userRepository.save(user);
 		
 		return userMapper.userToUserDto(user);
 	}
 	
 	/**
 	 * 
-	 * <p>find All User</p>
-	 * Nov 28, 2020
-	 *-------------------
+	 * <p>
+	 * find All User
+	 * </p>
+	 * Nov 28, 2020 -------------------
+	 * 
 	 * @author macbook
 	 *
 	 */
@@ -104,9 +109,14 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 	
 	/**
 	 * 
-	 * <p>password Encode</p>
-	 * <p>Nov 28, 2020</p>
-	 *-------------------
+	 * <p>
+	 * password Encode
+	 * </p>
+	 * <p>
+	 * Nov 28, 2020
+	 * </p>
+	 * -------------------
+	 * 
 	 * @author macbook
 	 * @param password
 	 * @return password encode
@@ -114,13 +124,13 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 	private String passwordEncode(String password) {
 		return passwordEncoder.encode(password);
 	}
-
+	
 	@Override
 	public UserDto edit(UserDto e) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	@Override
 	public boolean delete(Long id) {
 		
@@ -133,7 +143,7 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 		
 		return true;
 	}
-
+	
 	@Override
 	public UserDto getById(Long id) {
 		User user = this.userRepository.getOne(id);

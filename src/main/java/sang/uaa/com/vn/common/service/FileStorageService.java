@@ -128,7 +128,7 @@ public class FileStorageService extends BaseService {
 			throw new FileStorageException("File name is null.");
 		}
 		
-		String fileName = new String(originalFilename.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8).replaceAll(" ", "_");
+		String fileName = new String(originalFilename.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8).replace(" ", "_");
 		String tempPath = dir + File.separator + fileName;
 		Path path = Paths.get(tempPath);
 		Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);

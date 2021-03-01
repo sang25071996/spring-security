@@ -43,6 +43,15 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 		return this.roleMapper.roleToRoleDto(role);
 	}
 	
+	/**
+	 * 
+	 * <p>get By Id</p>
+	 * <p>Mar 1, 2021</p>
+	 *-------------------
+	 * @author macbook
+	 * @param id Long
+	 * @return RoleDto
+	 */
 	@Override
 	public RoleDto getById(Long id) {
 		
@@ -57,26 +66,47 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 		
 	}
 	
+	/**
+	 * 
+	 * <p>edit</p>
+	 * <p>Mar 1, 2021</p>
+	 *-------------------
+	 * @author macbook
+	 * @param roleDto RoleDto
+	 * @return RoleDto
+	 */
 	@Override
 	public RoleDto edit(RoleDto roleDto) {
+		
 		Role role;
 		if (ObjectUtils.isEmpty(roleDto.getId())) {
 			String message = MessageUtils.getMessage(MessageEnum.MSGCODE2.getValue(), roleDto.getId().toString());
 			throw new NotFoundException(new SysError(message, new ErrorParam(Constants.ID_STR)));
-		} else {
-			role = roleRepository.findByRoleId(roleDto.getId());
-			role.setName(convertRole(roleDto.getName()));
-			setUpdateInfo(role);
-			if (!ObjectUtils.isEmpty(role)) {
-				roleRepository.save(role);
-			} else {
-				String message = MessageUtils.getMessage(MessageEnum.MSGCODE2.getValue(), Constants.ROLE_STR);
-				throw new NotFoundException(new SysError(message, new ErrorParam(Constants.ID_STR)));
-			}
 		}
+		
+		role = roleRepository.findByRoleId(roleDto.getId());
+		if (ObjectUtils.isEmpty(role)) {
+			String message = MessageUtils.getMessage(MessageEnum.MSGCODE2.getValue(), Constants.ROLE_STR);
+			throw new NotFoundException(new SysError(message, new ErrorParam(Constants.ID_STR)));
+			
+		}
+		
+		role.setName(convertRole(roleDto.getName()));
+		setUpdateInfo(role);
+		
+		roleRepository.save(role);
+		
 		return this.roleMapper.roleToRoleDto(role);
 	}
 	
+	/**
+	 * 
+	 * <p>get Roles</p>
+	 * <p>Mar 1, 2021</p>
+	 *-------------------
+	 * @author macbook
+	 *
+	 */
 	@Override
 	public List<RoleDto> getRoles() {
 		List<RoleDto> roleDtos = new ArrayList<>();
@@ -85,7 +115,14 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 		return roleDtos;
 	}
 	
-
+	/**
+	 * 
+	 * <p>delete</p>
+	 * <p>Mar 1, 2021</p>
+	 *-------------------
+	 * @author macbook
+	 * @param id Long
+	 */
 	@Override
 	public boolean delete(Long id) {
 		
