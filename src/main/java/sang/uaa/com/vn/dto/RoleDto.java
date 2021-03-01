@@ -13,7 +13,8 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(content = Include.NON_NULL)
 @Data
-public class RoleDto implements Serializable {
+public class RoleDto extends BaseDto implements Serializable {
+	
 	private Long id;
 	@NotBlank(message = "role not empty")
 	private String name;

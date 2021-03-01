@@ -62,7 +62,7 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 	 *
 	 */
 	@Override
-	public UserDto createUser(UserDto userDto) {
+	public UserDto create(UserDto userDto) {
 		
 		User user = new User();
 		user.setUsername(userDto.getUsername());
@@ -93,10 +93,10 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 	 *
 	 */
 	@Override
-	public List<UserDto> findAllUser() {
+	public List<UserDto> getUsers() {
 		
 		List<UserDto> userDtos = new ArrayList<>();
-		List<User> users = userRepository.findAll();
+		List<User> users = userRepository.getAllUsers();
 		
 		users.stream().forEach(user -> userDtos.add(userMapper.userToUserDto(user)));
 		return userDtos;
@@ -113,6 +113,31 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 	 */
 	private String passwordEncode(String password) {
 		return passwordEncoder.encode(password);
+	}
+
+	@Override
+	public UserDto edit(UserDto e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean delete(Long id) {
+		
+		User user = this.userRepository.getOne(id);
+		if (ObjectUtils.isEmpty(user)) {
+			throw new NotFoundException("User not Found in database");
+		}
+		
+		this.userRepository.delete(user);
+		
+		return true;
+	}
+
+	@Override
+	public UserDto getById(Long id) {
+		User user = this.userRepository.getOne(id);
+		return userMapper.userToUserDto(user);
 	}
 	
 }

@@ -4,12 +4,7 @@ import java.util.List;
 
 import sang.uaa.com.vn.dto.RoleDto;
 
-public interface RoleService {
-	RoleDto save(RoleDto roleDto);
-
-	RoleDto getRoleById(Long id);
-
-	RoleDto edit(RoleDto roleDto);
+public interface RoleService extends IBaseService<RoleDto> {
 	
-	List<RoleDto> findAll();
+	List<RoleDto> getRoles();
 }

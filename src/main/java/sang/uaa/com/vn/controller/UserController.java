@@ -3,7 +3,9 @@ package sang.uaa.com.vn.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,17 +27,22 @@ public class UserController extends BaseController {
 	RoleService roleService;
 	@PostMapping()
 	public ResponseEntity<ResponJson> createUser(@RequestBody UserDto userDto) {
-		return getResponseEntity(userService.createUser(userDto));
+		return getResponseEntity(userService.create(userDto));
 	}
 	
-	@GetMapping(path = "/id")
-	public ResponseEntity<ResponJson> getRoleId(Long id) {
-		return getResponseEntity(roleService.getRoleById(id));
+	@GetMapping("/{id}")
+	public ResponseEntity<ResponJson> getById(@PathVariable Long id) {
+		return getResponseEntity(userService.getById(id));
+	}
+	
+	@DeleteMapping()
+	public ResponseEntity<ResponJson> delete(@PathVariable Long id) {
+		return getResponseEntity(userService.delete(id));
 	}
 
 	@GetMapping()
-	public ResponseEntity<ResponJson> findAllUser() {
+	public ResponseEntity<ResponJson> getUsers() {
 		
-		return getResponseEntity(userService.findAllUser());
+		return getResponseEntity(userService.getUsers());
 	}
 }

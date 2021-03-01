@@ -4,9 +4,7 @@ import java.util.List;
 
 import sang.uaa.com.vn.dto.UserDto;
 
-public interface UserService {
+public interface UserService extends IBaseService<UserDto> {
 	
-	UserDto createUser(UserDto userDto);
-	
-	List<UserDto> findAllUser();
+	List<UserDto> getUsers();
 }

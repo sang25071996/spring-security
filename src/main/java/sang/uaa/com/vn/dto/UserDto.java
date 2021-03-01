@@ -12,7 +12,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class UserDto  implements Serializable{
+public class UserDto extends BaseDto implements Serializable{
 
 	private Long id;
 	private String username;

@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,17 +31,27 @@ public class RoleController extends BaseController {
 	
 	@PostMapping()
 	public ResponseEntity<ResponJson> save(@Valid @RequestBody RoleDto roleDto, BindingResult bindingResult) {
-		return getResponseEntity(roleService.save(roleDto));
+		return getResponseEntity(roleService.create(roleDto));
 	}
 
 	@GetMapping()
+	public ResponseEntity<ResponJson> getRoles() {
+		return getResponseEntity(roleService.getRoles());
+	}
+	
+	@GetMapping("/{id}")
 	public ResponseEntity<ResponJson> getRoleById(Long id) {
-		return getResponseEntity(roleService.getRoleById(id));
+		return getResponseEntity(roleService.getById(id));
 	}
 
 	@PutMapping()
 	public ResponseEntity<ResponJson> edit(@RequestBody RoleDto roleDto) {
 		return getResponseEntity(roleService.edit(roleDto));
+	}
+	
+	@DeleteMapping()
+	public ResponseEntity<ResponJson> delete(@PathVariable Long id) {
+		return getResponseEntity(roleService.delete(id));
 	}
 
 }

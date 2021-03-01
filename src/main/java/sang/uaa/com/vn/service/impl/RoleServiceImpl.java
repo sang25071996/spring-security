@@ -35,7 +35,7 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	}
 	
 	@Override
-	public RoleDto save(RoleDto roleDto) {
+	public RoleDto create(RoleDto roleDto) {
 		Role role = new Role();
 		role.setName(convertRole(roleDto.getName()));
 		setCreateInfo(role);
@@ -44,7 +44,7 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	}
 	
 	@Override
-	public RoleDto getRoleById(Long id) {
+	public RoleDto getById(Long id) {
 		
 		Role role = roleRepository.findByRoleId(id);
 		if (ObjectUtils.isEmpty(role)) {
@@ -78,11 +78,25 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	}
 	
 	@Override
-	public List<RoleDto> findAll() {
+	public List<RoleDto> getRoles() {
 		List<RoleDto> roleDtos = new ArrayList<>();
 		List<Role> roles = roleRepository.findAll();
 		roles.forEach(role -> roleDtos.add(this.roleMapper.roleToRoleDto(role)));
 		return roleDtos;
+	}
+	
+
+	@Override
+	public boolean delete(Long id) {
+		
+		Role role = this.roleRepository.findByRoleId(id);
+		if (ObjectUtils.isEmpty(role)) {
+			throw new NotFoundException("Role not found in database");
+		}
+		
+		this.roleRepository.delete(role);
+		
+		return true;
 	}
 	
 	private String convertRole(String role) {
