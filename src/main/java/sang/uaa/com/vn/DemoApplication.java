@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -18,6 +19,7 @@ import sang.uaa.com.vn.common.MessageService;
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "sang.uaa.com.vn.repository")
 @EnableAspectJAutoProxy(proxyTargetClass = true)
+@EnableCaching
 public class DemoApplication implements ApplicationListener<ContextRefreshedEvent> {
 	
 	public static void main(String[] args) {

@@ -8,10 +8,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
+import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 
 import sang.uaa.com.vn.config.security.JwtAccessDeniedHandler;
 import sang.uaa.com.vn.config.security.RestAuthenticationEntryPoint;
@@ -37,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
-	// disabled request vào app
+	// disabled request into app
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**",
@@ -59,6 +62,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public AuthenticationManager authenticationManager() throws Exception {
 		return super.authenticationManager();
 	}
+	
+	//sessionRegistry the session registry which should be updated 
+	//when the authenticated session is changed.
+    @Bean
+    protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
+        return new RegisterSessionAuthenticationStrategy(
+          new SessionRegistryImpl());
+    }
 
 	/*
 	 * Định nghĩa các request được access vào app
@@ -71,13 +82,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					.and()
 					.authorizeRequests()
 					.antMatchers("/authenticate").permitAll()
+					.antMatchers("/logout").permitAll()
+					.antMatchers("//logout-success").permitAll()
 					.antMatchers("/role").hasRole("ADMIN")
 					.anyRequest().authenticated()
 					.and().csrf().disable().formLogin().disable();
-		httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+		//TODO: Disable session jwt
+//		httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+		httpSecurity.sessionManagement().sessionAuthenticationStrategy(sessionAuthenticationStrategy())
 				.and()
 				.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint())
-				.accessDeniedHandler(jwtAccessDeniedHandler());
+				.accessDeniedHandler(jwtAccessDeniedHandler()).and()
+				.logout().logoutUrl("/logout").invalidateHttpSession(true)
+				.addLogoutHandler(new SecurityContextLogoutHandler())
+				.logoutSuccessUrl("/logout-success")
+				.deleteCookies("JSESSIONID");
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
 	}

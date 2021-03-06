@@ -9,6 +9,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import sang.uaa.com.vn.entites.Authorizer;
+
 /**
  * <p>
  * RequestIntercepter
@@ -37,8 +39,14 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
 		request.setAttribute("startTime", this.startTime);
 		String user;
 		if (SecurityContextHolder.getContext().getAuthentication() != null && SecurityContextHolder.getContext().getAuthentication().getPrincipal() != null) {
-			user = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			LOG.info("User {} has been login", user);
+			
+			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof Authorizer) {
+				Authorizer authorizer = (Authorizer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+				LOG.info("User {} has been login", authorizer.getUsername());
+			} else {
+				user  = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+				LOG.info("User {} has been login", user);
+			}
 		}
 		return true;
 	}

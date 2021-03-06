@@ -1,6 +1,8 @@
 package sang.uaa.com.vn.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -15,6 +17,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -54,5 +57,12 @@ public class AuthenticationController {
 		HttpHeaders httpHeader = new HttpHeaders();
 		List<String> roles = authorizer.getPrivileges(authorizer.getUser().getRoles());
 		return new ResponseEntity<>(new LoginRespone(authorizer.getUsername(), roles, token), httpHeader, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/logout-success")
+	public ResponseEntity<Map> logoutSuccess() {
+		Map<String, Object> map = new HashMap<>();
+		map.put("session-clear", "User logout");
+		return new ResponseEntity<>(map, HttpStatus.OK);
 	}
 }
