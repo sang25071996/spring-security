@@ -15,6 +15,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import sang.uaa.com.vn.common.MessageService;
+import sang.uaa.com.vn.service.impl.TeaSeviceImpl;
 
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "sang.uaa.com.vn.repository")
@@ -24,6 +25,8 @@ public class DemoApplication implements ApplicationListener<ContextRefreshedEven
 	
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
+		TeaSeviceImpl teaSeviceImpl = new TeaSeviceImpl();
+		System.out.println(teaSeviceImpl.makeOlong());
 	}
 	
 	@Bean
