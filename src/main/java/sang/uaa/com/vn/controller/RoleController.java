@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import sang.uaa.com.vn.common.controller.BaseController;
+import sang.uaa.com.vn.common.dto.RequestPagingBuilder;
 import sang.uaa.com.vn.common.dto.ResponJson;
 import sang.uaa.com.vn.constant.Constants;
 import sang.uaa.com.vn.dto.RoleDto;
@@ -37,6 +38,11 @@ public class RoleController extends BaseController {
 	@GetMapping()
 	public ResponseEntity<ResponJson> getRoles() {
 		return getResponseEntity(roleService.getRoles());
+	}
+	
+	@PostMapping("filter-paging")
+	public ResponseEntity<ResponJson> filterPaging(@RequestBody RequestPagingBuilder<RoleDto> requestPagingBuilder) {
+		return getResponseEntity(roleService.filterPaging(requestPagingBuilder));
 	}
 	
 	@GetMapping("/{id}")

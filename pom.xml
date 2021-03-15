@@ -134,6 +134,7 @@
 		    <artifactId>mapstruct</artifactId>
 		    <version>1.3.1.Final</version> 
 		</dependency>
+		<!-- config redis cache -->
 		<dependency>
 		     <groupId>org.springframework.boot</groupId>
 		     <artifactId>spring-boot-starter-data-redis</artifactId>

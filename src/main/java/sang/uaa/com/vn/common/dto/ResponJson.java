@@ -45,9 +45,10 @@ public class ResponJson implements Serializable {
 		this.data = data;
 	}
 
-	public ResponJson(Object data, HttpStatus status) {
+	public ResponJson(Object data, HttpStatus status, String message) {
 		this.data = data;
 		this.status = status;
+		this.message = message;
 	}
 
 	public ResponJson(String message) {

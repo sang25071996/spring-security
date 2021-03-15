@@ -33,6 +33,7 @@ public final class Constants {
 	}
 
 	public static final String BLANK = "";
+	public static final String SUCCESS = "Success";
 	public static final String UNAUTHORIZED = "Unauthorized"; 
 	public static final long JWT_EXPERITION = 3600000;
 	public static final String AUTHORIZATION_HEADER = "Authorization";

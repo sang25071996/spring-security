@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import sang.uaa.com.vn.common.dto.ResponJson;
 import sang.uaa.com.vn.common.dto.UploadFile;
 import sang.uaa.com.vn.common.service.FileStorageService;
+import sang.uaa.com.vn.constant.Constants;
 
 /**
  * <p>
@@ -42,7 +44,7 @@ public class BaseController {
 	 * @return ResponseEntity<ResponJson>
 	 */
 	public ResponseEntity<ResponJson> getResponseEntity(Object object) {
-		ResponJson responJson = new ResponJson(object);
+		ResponJson responJson = new ResponJson(object,HttpStatus.OK, Constants.SUCCESS);
 		return ResponseEntity.ok(responJson);
 	}
 	

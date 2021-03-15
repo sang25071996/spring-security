@@ -3,15 +3,23 @@ package sang.uaa.com.vn.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import sang.uaa.com.vn.common.MessageEnum;
 import sang.uaa.com.vn.common.dto.ErrorParam;
+import sang.uaa.com.vn.common.dto.RequestPagingBuilder;
 import sang.uaa.com.vn.common.dto.SysError;
 import sang.uaa.com.vn.common.service.BaseService;
 import sang.uaa.com.vn.constant.Constants;
@@ -46,9 +54,14 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	
 	/**
 	 * 
-	 * <p>get By Id</p>
-	 * <p>Mar 1, 2021</p>
-	 *-------------------
+	 * <p>
+	 * get By Id
+	 * </p>
+	 * <p>
+	 * Mar 1, 2021
+	 * </p>
+	 * -------------------
+	 * 
 	 * @author macbook
 	 * @param id Long
 	 * @return RoleDto
@@ -71,9 +84,14 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	
 	/**
 	 * 
-	 * <p>edit</p>
-	 * <p>Mar 1, 2021</p>
-	 *-------------------
+	 * <p>
+	 * edit
+	 * </p>
+	 * <p>
+	 * Mar 1, 2021
+	 * </p>
+	 * -------------------
+	 * 
 	 * @author macbook
 	 * @param roleDto RoleDto
 	 * @return RoleDto
@@ -104,9 +122,14 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	
 	/**
 	 * 
-	 * <p>get Roles</p>
-	 * <p>Mar 1, 2021</p>
-	 *-------------------
+	 * <p>
+	 * get Roles
+	 * </p>
+	 * <p>
+	 * Mar 1, 2021
+	 * </p>
+	 * -------------------
+	 * 
 	 * @author macbook
 	 *
 	 */
@@ -120,9 +143,14 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	
 	/**
 	 * 
-	 * <p>delete</p>
-	 * <p>Mar 1, 2021</p>
-	 *-------------------
+	 * <p>
+	 * delete
+	 * </p>
+	 * <p>
+	 * Mar 1, 2021
+	 * </p>
+	 * -------------------
+	 * 
 	 * @author macbook
 	 * @param id Long
 	 */
@@ -141,5 +169,32 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	
 	private String convertRole(String role) {
 		return String.join(Constants.UNDERLINE, Constants.ROLE, role.toUpperCase());
+	}
+	
+	@Override
+	public Page<RoleDto> filterPaging(RequestPagingBuilder<RoleDto> requestPagingBuilder) {
+		
+		String name = "";
+		String[] fields = {"id"};
+		if (StringUtils.isNotBlank(requestPagingBuilder.getFilters().getName())) {
+			name = requestPagingBuilder.getFilters().getName();
+		}
+		
+		if (ArrayUtils.isEmpty(requestPagingBuilder.getFieldOrderBy())) {
+			fields = requestPagingBuilder.getFieldOrderBy();
+		}
+		
+		Sort.Direction sortDirection;
+		sortDirection = Direction.ASC;
+		if (StringUtils.isNotEmpty(requestPagingBuilder.getSortBy().name())) {
+			sortDirection = requestPagingBuilder.getSortBy();
+		}
+		
+		Pageable pageable = PageRequest.of(requestPagingBuilder.getPage(), requestPagingBuilder.getSize(),
+				Sort.by(sortDirection, fields));
+	
+		Page<Role> page = this.roleRepository.filterPaging(name, pageable);
+		
+		return page.map(content -> this.roleMapper.roleToRoleDto(content));
 	}
 }
