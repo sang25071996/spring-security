@@ -3,6 +3,7 @@ package sang.uaa.com.vn.entites;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,6 +43,11 @@ public class Role extends BaseEntity {
 	@JoinTable(name = "USER_ROLE", schema = "USERS", joinColumns = {
 			@JoinColumn(name = "ROLE_ID") }, inverseJoinColumns = { @JoinColumn(name = "USER_ID") })
 	private Set<User> users = new HashSet<>();
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "ROLES_PRIVILEGES", schema = "USERS", joinColumns = {
+			@JoinColumn(name = "ROLE_ID") }, inverseJoinColumns = { @JoinColumn(name = "PRIVILEGE_ID") })
+	private Set<Privilege> privileges;
 	
 	public Role(Long id, String name) {
 		this.id = id;

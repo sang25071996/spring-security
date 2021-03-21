@@ -5,7 +5,6 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -15,6 +14,7 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
+import sang.uaa.com.vn.entites.Authorizer;
 
 @Component
 public class TokenProvider {
@@ -24,9 +24,9 @@ public class TokenProvider {
 	private String secret;
 	private static final long EXPIRED_TIME = 86400000;
 	
-	public String generateToken(UserDetails userDetails) {
+	public String generateToken(Authorizer authorizer) {
 		 return Jwts.builder()
-		 	.setSubject(userDetails.getUsername())
+		 	.setSubject(authorizer.getUsername())
 		 	.setIssuedAt(new Date(System.currentTimeMillis()))
 		 	.setExpiration(new Date(System.currentTimeMillis() + EXPIRED_TIME))
 		 	.signWith(SignatureAlgorithm.HS256, secret).compact();

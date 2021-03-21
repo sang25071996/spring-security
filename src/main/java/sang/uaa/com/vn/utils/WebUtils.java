@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import sang.uaa.com.vn.constant.Constants;
+import sang.uaa.com.vn.entites.Authorizer;
 
 /**
  * 
@@ -28,11 +29,16 @@ public final class WebUtils {
 	}
 	public static String getPricipal() {
 		String user = Constants.BLANK;
-		if (SecurityContextHolder.getContext().getAuthentication() != null
-				&& SecurityContextHolder.getContext().getAuthentication().getPrincipal() != null) {
+		if (SecurityContextHolder.getContext().getAuthentication() != null && SecurityContextHolder.getContext().getAuthentication().getPrincipal() != null) {
 			
-			user = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof Authorizer) {
+				Authorizer authorizer = (Authorizer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+				return authorizer.getUsername();
+			} else {
+				user  = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			}
 		}
+		
 		return user;
 	}
 	

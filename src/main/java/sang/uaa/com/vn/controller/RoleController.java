@@ -20,6 +20,7 @@ import sang.uaa.com.vn.common.dto.RequestPagingBuilder;
 import sang.uaa.com.vn.common.dto.ResponJson;
 import sang.uaa.com.vn.constant.Constants;
 import sang.uaa.com.vn.dto.RoleDto;
+import sang.uaa.com.vn.dto.SystemPermission;
 import sang.uaa.com.vn.service.impl.RoleServiceImpl;
 
 @RestController
@@ -45,8 +46,18 @@ public class RoleController extends BaseController {
 		return getResponseEntity(roleService.filterPaging(requestPagingBuilder));
 	}
 	
+	@PostMapping("system-permission")
+	public ResponseEntity<ResponJson> setManagementPermission(@RequestBody SystemPermission systemPermission) {
+		return getResponseEntity(roleService.setManagementPermission(systemPermission));
+	}
+	
+	@GetMapping("system-permission")
+	public ResponseEntity<ResponJson> getManagementPermission() {
+		return getResponseEntity(roleService.getManagementPermission());
+	}
+	
 	@GetMapping("/{id}")
-	public ResponseEntity<ResponJson> getRoleById(Long id) {
+	public ResponseEntity<ResponJson> getRoleById(@PathVariable Long id) {
 		return getResponseEntity(roleService.getById(id));
 	}
 

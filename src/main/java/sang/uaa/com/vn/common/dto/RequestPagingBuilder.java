@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class RequestPagingBuilder<T>  implements Serializable{
 	
-	private String[] fieldOrderBy;
+	private String[] fieldsOrderBy;
 	private T filters;
 	private Sort.Direction sortBy;
 	private int page;

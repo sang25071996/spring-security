@@ -13,11 +13,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import sang.uaa.com.vn.constant.Constants;
+import sang.uaa.com.vn.entites.Authorizer;
 import sang.uaa.com.vn.service.impl.UserServiceImpl;
 
 @Component
@@ -41,8 +41,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 			 token = header.substring(7);
 			 String username = tokenProvider.getUsernameFromToken(token);
 			 if (StringUtils.isNotEmpty(username)) {
-				 UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(username);
-				 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, null, userDetails.getAuthorities());
+				 Authorizer authorizer = jwtUserDetailsService.loadUserByUsername(username);
+				 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(authorizer, null, authorizer.getAuthorities());
 				 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 			 }
 		 } else {

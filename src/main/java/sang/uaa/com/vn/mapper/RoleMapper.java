@@ -5,7 +5,7 @@ import org.mapstruct.Mapper;
 import sang.uaa.com.vn.dto.RoleDto;
 import sang.uaa.com.vn.entites.Role;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface RoleMapper {
 	
 	RoleDto roleToRoleDto(Role role);

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,6 +23,11 @@ import sang.uaa.com.vn.config.security.jwt.JwtRequestFilter;
 import sang.uaa.com.vn.service.impl.UserServiceImpl;
 
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(
+	prePostEnabled = true,
+	securedEnabled =  true,
+	jsr250Enabled =  true
+)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
