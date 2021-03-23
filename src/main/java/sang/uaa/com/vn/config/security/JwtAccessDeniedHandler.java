@@ -23,6 +23,8 @@ public class JwtAccessDeniedHandler implements AccessDeniedHandler {
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
 		response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 		response.sendError(HttpServletResponse.SC_FORBIDDEN, accessDeniedException.getMessage());
+
+        response.sendRedirect(request.getContextPath() + "/access-denied");
 	}
 
 }

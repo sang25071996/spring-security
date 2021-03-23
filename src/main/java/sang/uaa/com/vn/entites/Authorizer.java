@@ -62,21 +62,25 @@ public class Authorizer implements UserDetails {
 		return true;
 	}
 	
-	public List<String> getPrivileges(Collection<Role> roles) {
+	public List<String> getPrivileges(Collection<Privilege> collectionPrivilege) {
 		 
-        for (Role role : roles) {
-            privileges.add(role.getName());
+        for (Privilege privilege : collectionPrivilege) {
+            this.privileges.add(privilege.getName());
         }
-        return privileges;
+        return this.privileges;
     }
 	
     private List<GrantedAuthority> getGrantedAuthorities(Set<Role> roles) {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        getPrivileges(roles);
         for (Role privilege : roles) {
+        	getPrivileges(privilege.getPrivileges());
             authorities.add(new SimpleGrantedAuthority(privilege.getName()));
         }
         return authorities;
+    }
+    
+    public List<String> getPrivileges() {
+    	return this.privileges;
     }
 
 	public User getUser() {

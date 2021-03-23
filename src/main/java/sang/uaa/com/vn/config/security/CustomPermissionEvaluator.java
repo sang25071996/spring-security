@@ -1,0 +1,46 @@
+package sang.uaa.com.vn.config.security;
+
+import java.io.Serializable;
+
+import org.springframework.security.access.PermissionEvaluator;
+import org.springframework.security.core.Authentication;
+
+import sang.uaa.com.vn.entites.Authorizer;
+
+public class CustomPermissionEvaluator implements PermissionEvaluator {
+	
+	@Override
+	public boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permission) {
+		
+		if ((authentication == null) || (targetDomainObject == null) || !(permission instanceof String)) {
+			return false;
+		}
+		
+		String targetType = targetDomainObject.getClass().getSimpleName().toUpperCase();
+		return hasPrivilege(authentication, targetType, (String) permission);
+	}
+	
+	@Override
+	public boolean hasPermission(Authentication authentication, Serializable targetId, String targetType,
+			Object permission) {
+		
+		if ((authentication == null) || (targetType == null) || !(permission instanceof String)) {
+			return false;
+		}
+		
+		return hasPrivilege(authentication, targetType, (String) permission);
+	}
+	
+	private boolean hasPrivilege(Authentication auth, String targetType, String permission) {
+		
+		Authorizer authorizer = (Authorizer) auth.getPrincipal();
+		
+		if (authorizer.getPrivileges().contains(permission)) {
+			
+			return true;
+		}
+		
+		return false;
+	}
+	
+}

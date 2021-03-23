@@ -9,6 +9,8 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -144,6 +146,8 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 		return true;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PostAuthorize("hasPermission(returnObject,'USER_READ')")
 	@Override
 	public UserDto getById(Long id) {
 		User user = this.userRepository.getOne(id);

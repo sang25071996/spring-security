@@ -40,7 +40,7 @@ public class AuthenticationController {
 	
 	@Autowired
 	private UserServiceImpl userDetailsService;
-
+	
 	@PostMapping("/authenticate")
 	public ResponseEntity<LoginRespone> authenticate(@Valid @RequestBody LoginDto loginDto) {
 		UsernamePasswordAuthenticationToken authenToken = new UsernamePasswordAuthenticationToken(
@@ -55,14 +55,23 @@ public class AuthenticationController {
 		token.setExpireTime(expiredTime);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		HttpHeaders httpHeader = new HttpHeaders();
-		List<String> roles = authorizer.getPrivileges(authorizer.getUser().getRoles());
-		return new ResponseEntity<>(new LoginRespone(authorizer.getUsername(), roles, token), httpHeader, HttpStatus.OK);
+		List<String> roles = authorizer.getPrivileges();
+		return new ResponseEntity<>(new LoginRespone(authorizer.getUsername(), roles, token), httpHeader,
+				HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/logout-success")
 	public ResponseEntity<Map> logoutSuccess() {
 		Map<String, Object> map = new HashMap<>();
 		map.put("session-clear", "User logout");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/access-denied")
+	public ResponseEntity<Map> handlerAccessDenied() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Map<String, Object> map = new HashMap<>();
+		map.put("Access-denined", auth.getName());
 		return new ResponseEntity<>(map, HttpStatus.OK);
 	}
 }
