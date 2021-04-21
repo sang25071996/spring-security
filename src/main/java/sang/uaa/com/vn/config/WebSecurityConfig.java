@@ -1,5 +1,7 @@
 package sang.uaa.com.vn.config;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +17,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import sang.uaa.com.vn.config.security.JwtAccessDeniedHandler;
 import sang.uaa.com.vn.config.security.RestAuthenticationEntryPoint;
@@ -79,12 +84,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.httpBasic()
-					.and()
+					.and().cors().configurationSource(corsConfigurationSource()).and()
 					.authorizeRequests()
 					.antMatchers("/authenticate").permitAll()
 					.antMatchers("/logout").permitAll()
 					.antMatchers("//logout-success").permitAll()
-					.antMatchers("/role").hasRole("ADMIN")
 					.anyRequest().authenticated()
 					.and().csrf().disable().formLogin().disable();
 		//TODO: Disable session jwt
@@ -99,5 +103,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.deleteCookies("JSESSIONID");
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
+	}
+	
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOrigins(Arrays.asList("*"));
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "DELETE", "PUT", "PATCH"));
+		configuration.setAllowedHeaders(
+				Arrays.asList("X-Requested-With", "Origin", "Content-Type", "Accept", "Authorization"));
+		configuration.setAllowCredentials(true);
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
 	}
 }

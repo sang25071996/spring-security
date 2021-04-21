@@ -1,5 +1,6 @@
 package sang.uaa.com.vn.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -20,7 +21,7 @@ import sang.uaa.com.vn.mapper.PrivilegeMapper;
 import sang.uaa.com.vn.repository.PrivilegeRepository;
 import sang.uaa.com.vn.service.PrivilegeService;
 
-@Service
+@Service(value = "privilegeServiceImpl")
 public class PrivilegeServiceImpl extends BaseService implements PrivilegeService {
 
 	@Autowired
@@ -93,6 +94,10 @@ public class PrivilegeServiceImpl extends BaseService implements PrivilegeServic
 		}
 		
 		return this.privilegeMapper.toDto(optionalPrivilege.get());
+	}
+	
+	public List<Privilege> getPrivileges() {
+		return this.privilegeRepository.findAll();
 	}
 	
 }

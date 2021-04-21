@@ -146,8 +146,8 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 		return true;
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PostAuthorize("hasPermission(returnObject,'USER_READ')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")//SecurityExpressionRoot
+	@PostAuthorize("hasPermission(@privilegeServiceImpl.getPrivileges(),'USER_READ')")
 	@Override
 	public UserDto getById(Long id) {
 		User user = this.userRepository.getOne(id);

@@ -50,6 +50,7 @@ public class AuthenticationController {
 		String tokenJwt = tokenProvider.generateToken(authorizer);
 		Token token = new Token();
 		token.setTokenType(tokenJwt);
+		LOG.info("Server 2");
 		LOG.info("Expire time for Token {}", tokenProvider.getExpiredTimeFromToken(tokenJwt));
 		String expiredTime = String.valueOf(tokenProvider.getExpiredTimeFromToken(tokenJwt).getTime());
 		token.setExpireTime(expiredTime);

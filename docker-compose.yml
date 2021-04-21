@@ -14,7 +14,7 @@ services:
         depends_on:
         - db
         environment:
-            - SPRING_DATASOURCE_URL=jdbc:postgresql://192.168.1.36:5433/sang-uaa-service
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://192.168.1.217:5433/sang-uaa-service
         ports:
             - "9999:9999"
   # Database Service (Postgres)
