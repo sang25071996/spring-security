@@ -6,4 +6,4 @@ VOLUME /tmp
 EXPOSE 9999
 COPY ./target/*.jar /usr/app/sang-uaa-service.jar
 WORKDIR /usr/app
-ENTRYPOINT [ "java", "${JAVA_OPTS}","-jar","sang-uaa-service.jar" ]
+ENTRYPOINT [ "java", "-Dspring.profiles.active=dev","-jar","sang-uaa-service.jar" ]
