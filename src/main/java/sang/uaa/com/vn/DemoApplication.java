@@ -21,6 +21,7 @@ public class DemoApplication implements ApplicationListener<ContextRefreshedEven
 		SpringApplication.run(DemoApplication.class, args);
 		TeaSeviceImpl teaSeviceImpl = new TeaSeviceImpl();
 		System.out.println(teaSeviceImpl.makeOlong());
+		System.out.println("---------sangTest--------");
 	}
 	
 	@Override
