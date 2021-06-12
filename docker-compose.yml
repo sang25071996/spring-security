@@ -10,13 +10,15 @@ volumes:
 services:
  
   myapp:
-        image: sang-uaa-service:latest
-        depends_on:
-        - db
-        environment:
-            - SPRING_DATASOURCE_URL=jdbc:postgresql://10.0.2.15:5433/sang-uaa-service
-        ports:
-            - "9999:9999"
+    image: sang-uaa-service:latest
+    depends_on:
+    - db
+    environment:
+        - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/sang-uaa-service
+    ports:
+        - "9999:9999"
+    networks:
+      - backend
   # Database Service (Postgres)
   db:
     # Use the Docker Image postgres. This will pull the 12 version.
@@ -39,6 +41,14 @@ services:
       POSTGRES_PASSWORD: 123456
       POSTGRES_DB: sang-uaa-service
       PGDATA: /var/lib/postgresql/data/pgdata
+  testnginx:
+    image: testnginx:latest
+    container_name: testnginx123
+    restart: always
+    networks: 
+      - backend
+    ports:
+      - "9090:80"
     # Service health check
     healthcheck:
       test: pg_isready -U postgres

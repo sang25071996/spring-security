@@ -6,4 +6,7 @@ VOLUME /tmp
 EXPOSE 9999
 COPY ./target/*.jar /usr/app/sang-uaa-service.jar
 WORKDIR /usr/app
-ENTRYPOINT [ "java", "-Dspring.profiles.active=dev","-jar","sang-uaa-service.jar" ]
+
+#enviroment variable default value
+ENV SPRING_PROFILE=local
+ENTRYPOINT [ "java", "-Dspring.profiles.active=${SPRING_PROFILE}","-jar","sang-uaa-service.jar" ]

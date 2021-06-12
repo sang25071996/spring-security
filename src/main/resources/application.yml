@@ -1,4 +1,4 @@
-swagger-url: ${swagger-url:localhost:8080}
+swagger-url: ${api-url:localhost:9999}
 #config pattern log console
 logging:
   level:
