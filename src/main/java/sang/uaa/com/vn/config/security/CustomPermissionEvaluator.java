@@ -34,13 +34,7 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
 		
 		Authorizer authorizer = (Authorizer) auth.getPrincipal();
 		
-		if (authorizer.getPrivileges().contains(permission)) {
-			return true;
-			
-		} else {
-			
-			return false;
-		}
+		return authorizer.getPrivileges().contains(permission);
 		
 	}
 	
