@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import sang.uaa.com.vn.constant.Constants;
 import springfox.documentation.builders.ParameterBuilder;
@@ -21,8 +22,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-	@Value("${swagger-url")
-	private  String host;
+	@Value("${swagger-url}")
+	private String host;
 	@Bean
     public Docket api() { 
         return new Docket(DocumentationType.SWAGGER_2)
@@ -33,6 +34,12 @@ public class SwaggerConfig {
           .paths(PathSelectors.any())                          
           .build();                                           
     }
+	
+	@Bean
+    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+	
 	private List<Parameter> globalParameterList() {
 		Parameter parameter = new ParameterBuilder()
 				.name(Constants.AUTHORIZATION_HEADER)

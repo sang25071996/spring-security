@@ -3,6 +3,7 @@ package sang.uaa.com.vn.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import sang.uaa.com.vn.config.security.jwt.TokenProvider;
 import sang.uaa.com.vn.dto.LoginDto;
 import sang.uaa.com.vn.entites.Authorizer;
+import sang.uaa.com.vn.entites.Role;
 import sang.uaa.com.vn.jwt.payload.LoginRespone;
 import sang.uaa.com.vn.jwt.payload.Token;
 import sang.uaa.com.vn.service.impl.UserServiceImpl;
@@ -56,20 +58,20 @@ public class AuthenticationController {
 		token.setExpireTime(expiredTime);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		HttpHeaders httpHeader = new HttpHeaders();
-		List<String> roles = authorizer.getPrivileges();
+		List<String> roles = authorizer.getUser().getRoles().stream().map(Role::getName).collect(Collectors.toList());
 		return new ResponseEntity<>(new LoginRespone(authorizer.getUsername(), roles, token), httpHeader,
 				HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/logout-success")
-	public ResponseEntity<Map> logoutSuccess() {
+	public ResponseEntity<Map<String, Object>> logoutSuccess() {
 		Map<String, Object> map = new HashMap<>();
 		map.put("session-clear", "User logout");
 		return new ResponseEntity<>(map, HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/access-denied")
-	public ResponseEntity<Map> handlerAccessDenied() {
+	public ResponseEntity<Map<String, Object>> handlerAccessDenied() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Map<String, Object> map = new HashMap<>();
 		map.put("Access-denined", auth.getName());

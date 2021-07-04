@@ -2,6 +2,8 @@ package sang.uaa.com.vn.common.service;
 
 import java.util.List;
 
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.mapstruct.factory.Mappers;
 
 import sang.uaa.com.vn.entites.BaseEntity;
@@ -12,6 +14,14 @@ public class BaseService {
 	
 	public int checkMaxPageSize(int pageSize) {
 		return -1 == pageSize ? Integer.MAX_VALUE : pageSize;
+	}
+	
+	protected String defaultIfNotBlank(String str, String defaultValue) {
+		return StringUtils.isNotBlank(str) ? str : defaultValue;
+	}
+	
+	protected <T> T defaultIfNotBlank(T object, T defaultValue) {
+		return ObjectUtils.isNotEmpty(object) ? object : defaultValue;
 	}
 	
 	/**

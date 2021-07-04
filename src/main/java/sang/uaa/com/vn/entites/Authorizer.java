@@ -5,9 +5,14 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 /**
  * 
@@ -16,7 +21,9 @@ import org.springframework.security.core.userdetails.UserDetails;
  * -------------------
  * @author macbook
  */
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Authorizer implements UserDetails {
 	
 	private static final long serialVersionUID = 1L;
@@ -73,7 +80,9 @@ public class Authorizer implements UserDetails {
     private List<GrantedAuthority> getGrantedAuthorities(Set<Role> roles) {
         List<GrantedAuthority> authorities = new ArrayList<>();
         for (Role privilege : roles) {
-        	getPrivileges(privilege.getPrivileges());
+        	if (ObjectUtils.isNotEmpty(privilege.getPrivileges())) {
+        		getPrivileges(privilege.getPrivileges());
+        	}
             authorities.add(new SimpleGrantedAuthority(privilege.getName()));
         }
         return authorities;

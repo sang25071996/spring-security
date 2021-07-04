@@ -14,7 +14,7 @@ import lombok.Setter;
 public class RequestPagingBuilder<T>  implements Serializable{
 	
 	private String[] fieldsOrderBy;
-	private T filters;
+	private transient T filters;
 	private Sort.Direction sortBy;
 	private int page;
 	private int size;

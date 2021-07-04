@@ -14,7 +14,7 @@ public class ResponJson implements Serializable {
 	/** serialVersionUID */
 	private static final long serialVersionUID = 1L;
 	private String message;
-	private Object data;
+	private transient Object data;
 	private SysError sysError;
 	private HttpStatus status;
 

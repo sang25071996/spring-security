@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PostAuthorize;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -146,7 +145,7 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 		return true;
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")//SecurityExpressionRoot
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")//SecurityExpressionRoot
 	@PostAuthorize("hasPermission(@privilegeServiceImpl.getPrivileges(),'USER_READ')")
 	@Override
 	public UserDto getById(Long id) {

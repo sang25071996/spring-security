@@ -24,6 +24,7 @@ import sang.uaa.com.vn.service.PrivilegeService;
 @Service(value = "privilegeServiceImpl")
 public class PrivilegeServiceImpl extends BaseService implements PrivilegeService {
 
+	private static final String PRIVILEGE = "Privilege";
 	@Autowired
 	private PrivilegeRepository privilegeRepository;
 	@Autowired
@@ -61,7 +62,7 @@ public class PrivilegeServiceImpl extends BaseService implements PrivilegeServic
 		}
 		Optional<Privilege> optionalPrivilege = this.privilegeRepository.findById(privilegeDto.getId());
 		if (!optionalPrivilege.isPresent()) {
-			throw new BadRequestException(new SysError(Constants.ERROR_DATA_NULL, new ErrorParam("Privilege")));
+			throw new BadRequestException(new SysError(Constants.ERROR_DATA_NULL, new ErrorParam(PRIVILEGE)));
 		}
 		
 		Privilege privilege = optionalPrivilege.get();
@@ -78,7 +79,7 @@ public class PrivilegeServiceImpl extends BaseService implements PrivilegeServic
 
 		Optional<Privilege> optionalPrivilege = this.privilegeRepository.findById(id);
 		if (!optionalPrivilege.isPresent()) {
-			throw new BadRequestException(new SysError(Constants.ERROR_DATA_NULL, new ErrorParam("Privilege")));
+			throw new BadRequestException(new SysError(Constants.ERROR_DATA_NULL, new ErrorParam(PRIVILEGE)));
 		}
 		
 		this.privilegeRepository.delete(optionalPrivilege.get());
@@ -90,7 +91,7 @@ public class PrivilegeServiceImpl extends BaseService implements PrivilegeServic
 		
 		Optional<Privilege> optionalPrivilege = this.privilegeRepository.findById(id);
 		if (!optionalPrivilege.isPresent()) {
-			throw new BadRequestException(new SysError(Constants.ERROR_DATA_NULL, new ErrorParam("Privilege")));
+			throw new BadRequestException(new SysError(Constants.ERROR_DATA_NULL, new ErrorParam(PRIVILEGE)));
 		}
 		
 		return this.privilegeMapper.toDto(optionalPrivilege.get());

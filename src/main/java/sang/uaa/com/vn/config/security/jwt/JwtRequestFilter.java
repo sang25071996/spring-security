@@ -1,6 +1,9 @@
 package sang.uaa.com.vn.config.security.jwt;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -16,8 +19,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import sang.uaa.com.vn.constant.Constants;
 import sang.uaa.com.vn.entites.Authorizer;
+import sang.uaa.com.vn.entites.Role;
+import sang.uaa.com.vn.entites.User;
 import sang.uaa.com.vn.service.impl.UserServiceImpl;
 
 @Component
@@ -39,10 +46,23 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		 if(header != null && header.startsWith("Bearer")) {
 			 LOG.info("JWT Token begin Bearer String");
 			 token = header.substring(7);
-			 String username = tokenProvider.getUsernameFromToken(token);
+			 Jws<Claims> claims = tokenProvider.parseClaims(token);
+			 String username = claims.getBody().getSubject();
 			 if (StringUtils.isNotEmpty(username)) {
-				 Authorizer authorizer = jwtUserDetailsService.loadUserByUsername(username);
-				 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(authorizer, null, authorizer.getAuthorities());
+				 List<String> scopes = claims.getBody().get("scopes", List.class);
+				 List<String> privileges = claims.getBody().get("privileges", List.class);
+				 
+				 List<Role> roles = new ArrayList<>();
+				 Role role;
+				 for(String name : scopes) {
+					 role = new Role();
+					 role.setName(name);
+					 roles.add(role);
+				 }
+				 User user = User.builder().username(username).roles(new HashSet<>(roles)).build();
+				 Authorizer authorizer = Authorizer.builder().user(user).privileges(privileges).build();
+				 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+						 authorizer, null, authorizer.getAuthorities());
 				 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 			 }
 		 } else {

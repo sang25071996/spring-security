@@ -192,9 +192,8 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 		
 		String name = "";
 		String[] fields = { "id" };
-		if (StringUtils.isNotBlank(requestPagingBuilder.getFilters().getName())) {
-			name = requestPagingBuilder.getFilters().getName();
-		}
+		
+		name = defaultIfNotBlank(requestPagingBuilder.getFilters().getName(), name);
 		
 		if (ArrayUtils.isEmpty(requestPagingBuilder.getFieldsOrderBy())) {
 			fields = requestPagingBuilder.getFieldsOrderBy();
