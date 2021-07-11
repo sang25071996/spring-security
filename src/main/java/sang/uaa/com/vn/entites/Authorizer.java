@@ -13,6 +13,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import sang.uaa.com.vn.user.entites.Privilege;
+import sang.uaa.com.vn.user.entites.Role;
+import sang.uaa.com.vn.user.entites.User;
 
 /**
  * 

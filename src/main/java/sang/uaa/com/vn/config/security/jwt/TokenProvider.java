@@ -20,8 +20,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 import sang.uaa.com.vn.entites.Authorizer;
-import sang.uaa.com.vn.entites.Privilege;
-import sang.uaa.com.vn.entites.Role;
+import sang.uaa.com.vn.user.entites.Privilege;
+import sang.uaa.com.vn.user.entites.Role;
 
 @Component
 public class TokenProvider {

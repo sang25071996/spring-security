@@ -28,9 +28,13 @@ public final class Constants {
 			
 		}
 		
-		public static final String API_ROLE = "role";
-		public static final String API_USER = "user";
+		public static final String API_ROLE = "roles";
+		public static final String API_USER = "users";
 		public static final String API_PRIVILEGE = "privileges";
+		public static final String API_PRODUCT_CATEGRORIES = "product-categrories";
+		public static final String API_PRODUCT = "product";
+		public static final String API_POST = "post";
+		public static final String API_CATEGRORY = "categrory";
 		
 	}
 

@@ -9,12 +9,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ResponJson implements Serializable {
+public class ResponJson<T> implements Serializable {
 	
 	/** serialVersionUID */
 	private static final long serialVersionUID = 1L;
 	private String message;
-	private transient Object data;
+	private transient T data;
 	private SysError sysError;
 	private HttpStatus status;
 
@@ -22,7 +22,7 @@ public class ResponJson implements Serializable {
 
 	}
 	
-	public ResponJson(String message, Object data, SysError sysError, HttpStatus status) {
+	public ResponJson(String message, T data, SysError sysError, HttpStatus status) {
 		super();
 		this.message = message;
 		this.data = data;
@@ -41,11 +41,11 @@ public class ResponJson implements Serializable {
 		this.sysError = sysError;
 	}
 	
-	public ResponJson(Object data) {
+	public ResponJson(T data) {
 		this.data = data;
 	}
 
-	public ResponJson(Object data, HttpStatus status, String message) {
+	public ResponJson(T data, HttpStatus status, String message) {
 		this.data = data;
 		this.status = status;
 		this.message = message;
@@ -68,7 +68,7 @@ public class ResponJson implements Serializable {
 		return data;
 	}
 
-	public void setData(Object data) {
+	public void setData(T data) {
 		this.data = data;
 	}
 

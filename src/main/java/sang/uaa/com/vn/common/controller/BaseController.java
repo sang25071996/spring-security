@@ -40,11 +40,12 @@ public class BaseController {
 	 * Nov 9, 2020
 	 * 
 	 * @author macbook
+	 * @param <T>
 	 * @param object
 	 * @return ResponseEntity<ResponJson>
 	 */
-	public ResponseEntity<ResponJson> getResponseEntity(Object object) {
-		ResponJson responJson = new ResponJson(object,HttpStatus.OK, Constants.SUCCESS);
+	public <T> ResponseEntity<ResponJson<T>> getResponseEntity(T object) {
+		ResponJson<T> responJson = new ResponJson<>(object,HttpStatus.OK, Constants.SUCCESS);
 		return ResponseEntity.ok(responJson);
 	}
 	

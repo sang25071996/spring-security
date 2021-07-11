@@ -15,11 +15,11 @@ import sang.uaa.com.vn.common.dto.SysError;
 import sang.uaa.com.vn.common.service.BaseService;
 import sang.uaa.com.vn.constant.Constants;
 import sang.uaa.com.vn.dto.PrivilegeDto;
-import sang.uaa.com.vn.entites.Privilege;
 import sang.uaa.com.vn.exception.BadRequestException;
 import sang.uaa.com.vn.mapper.PrivilegeMapper;
 import sang.uaa.com.vn.repository.PrivilegeRepository;
 import sang.uaa.com.vn.service.PrivilegeService;
+import sang.uaa.com.vn.user.entites.Privilege;
 
 @Service(value = "privilegeServiceImpl")
 public class PrivilegeServiceImpl extends BaseService implements PrivilegeService {
@@ -78,6 +78,7 @@ public class PrivilegeServiceImpl extends BaseService implements PrivilegeServic
 	public boolean delete(Long id) {
 
 		Optional<Privilege> optionalPrivilege = this.privilegeRepository.findById(id);
+		
 		if (!optionalPrivilege.isPresent()) {
 			throw new BadRequestException(new SysError(Constants.ERROR_DATA_NULL, new ErrorParam(PRIVILEGE)));
 		}

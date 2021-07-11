@@ -21,12 +21,12 @@ import sang.uaa.com.vn.constant.Constants;
 import sang.uaa.com.vn.dto.RoleDto;
 import sang.uaa.com.vn.dto.UserDto;
 import sang.uaa.com.vn.entites.Authorizer;
-import sang.uaa.com.vn.entites.Role;
-import sang.uaa.com.vn.entites.User;
 import sang.uaa.com.vn.exception.NotFoundException;
 import sang.uaa.com.vn.mapper.UserMapper;
 import sang.uaa.com.vn.repository.UserRepository;
 import sang.uaa.com.vn.service.UserService;
+import sang.uaa.com.vn.user.entites.Role;
+import sang.uaa.com.vn.user.entites.User;
 import sang.uaa.com.vn.utils.MessageUtils;
 
 @Service

@@ -28,10 +28,10 @@ import org.springframework.web.multipart.MultipartFile;
 import sang.uaa.com.vn.common.dto.UploadFile;
 import sang.uaa.com.vn.constant.Constants;
 import sang.uaa.com.vn.entites.FileStorage;
-import sang.uaa.com.vn.entites.User;
 import sang.uaa.com.vn.exception.FileStorageException;
 import sang.uaa.com.vn.repository.FileStorageRepository;
 import sang.uaa.com.vn.repository.UserRepository;
+import sang.uaa.com.vn.user.entites.User;
 import sang.uaa.com.vn.utils.FileUtils;
 import sang.uaa.com.vn.utils.WebUtils;
 

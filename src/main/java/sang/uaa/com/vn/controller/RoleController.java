@@ -1,8 +1,11 @@
 package sang.uaa.com.vn.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -32,42 +35,42 @@ public class RoleController extends BaseController {
 	private RoleServiceImpl roleService;
 	
 	@PostMapping()
-	public ResponseEntity<ResponJson> save(@Valid @RequestBody RoleDto roleDto, BindingResult bindingResult) {
+	public ResponseEntity<ResponJson<RoleDto>> save(@Valid @RequestBody RoleDto roleDto, BindingResult bindingResult) {
 		return getResponseEntity(roleService.create(roleDto));
 	}
 
 	@GetMapping()
-	public ResponseEntity<ResponJson> getRoles() {
+	public ResponseEntity<ResponJson<List<RoleDto>>> getRoles() {
 		return getResponseEntity(roleService.getRoles());
 	}
 	
 	@PostMapping("filter-paging")
-	public ResponseEntity<ResponJson> filterPaging(@RequestBody RequestPagingBuilder<RoleDto> requestPagingBuilder) {
+	public ResponseEntity<ResponJson<Page<RoleDto>>> filterPaging(@RequestBody RequestPagingBuilder<RoleDto> requestPagingBuilder) {
 		return getResponseEntity(roleService.filterPaging(requestPagingBuilder));
 	}
 	
 	@PostMapping("system-permission")
-	public ResponseEntity<ResponJson> setManagementPermission(@RequestBody SystemPermission systemPermission) {
+	public ResponseEntity<ResponJson<SystemPermission>> setManagementPermission(@RequestBody SystemPermission systemPermission) {
 		return getResponseEntity(roleService.setManagementPermission(systemPermission));
 	}
 	
 	@GetMapping("system-permission")
-	public ResponseEntity<ResponJson> getManagementPermission() {
+	public ResponseEntity<ResponJson<List<SystemPermission>>> getManagementPermission() {
 		return getResponseEntity(roleService.getManagementPermission());
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<ResponJson> getRoleById(@PathVariable Long id) {
+	public ResponseEntity<ResponJson<RoleDto>> getRoleById(@PathVariable Long id) {
 		return getResponseEntity(roleService.getById(id));
 	}
 
 	@PutMapping()
-	public ResponseEntity<ResponJson> edit(@RequestBody RoleDto roleDto) {
+	public ResponseEntity<ResponJson<RoleDto>> edit(@RequestBody RoleDto roleDto) {
 		return getResponseEntity(roleService.edit(roleDto));
 	}
 	
 	@DeleteMapping()
-	public ResponseEntity<ResponJson> delete(@PathVariable Long id) {
+	public ResponseEntity<ResponJson<Boolean>> delete(@PathVariable Long id) {
 		return getResponseEntity(roleService.delete(id));
 	}
 

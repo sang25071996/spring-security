@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import sang.uaa.com.vn.entites.Role;
+import sang.uaa.com.vn.user.entites.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {

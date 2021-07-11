@@ -1,5 +1,7 @@
 package sang.uaa.com.vn.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -27,22 +29,22 @@ public class UserController extends BaseController {
 	@Autowired
 	RoleService roleService;
 	@PostMapping()
-	public ResponseEntity<ResponJson> createUser(@RequestBody UserDto userDto) {
+	public ResponseEntity<ResponJson<UserDto>> createUser(@RequestBody UserDto userDto) {
 		return getResponseEntity(userService.create(userDto));
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<ResponJson> getById(@PathVariable Long id) {
+	public ResponseEntity<ResponJson<UserDto>> getById(@PathVariable Long id) {
 		return getResponseEntity(userService.getById(id));
 	}
 	
 	@DeleteMapping()
-	public ResponseEntity<ResponJson> delete(@PathVariable Long id) {
+	public ResponseEntity<ResponJson<Boolean>> delete(@PathVariable Long id) {
 		return getResponseEntity(userService.delete(id));
 	}
 
 	@GetMapping()
-	public ResponseEntity<ResponJson> getUsers() {
+	public ResponseEntity<ResponJson<List<UserDto>>> getUsers() {
 		
 		return getResponseEntity(userService.getUsers());
 	}

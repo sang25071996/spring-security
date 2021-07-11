@@ -18,7 +18,7 @@ public class StudentController extends BaseController {
 	private StudentService studentService;
 	
 	@GetMapping()
-	public ResponseEntity<ResponJson> insertBatch() {
+	public ResponseEntity<ResponJson<Boolean>> insertBatch() {
 		return getResponseEntity(studentService.insertBatch());
 	}
 }

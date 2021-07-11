@@ -23,9 +23,9 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import sang.uaa.com.vn.constant.Constants;
 import sang.uaa.com.vn.entites.Authorizer;
-import sang.uaa.com.vn.entites.Role;
-import sang.uaa.com.vn.entites.User;
 import sang.uaa.com.vn.service.impl.UserServiceImpl;
+import sang.uaa.com.vn.user.entites.Role;
+import sang.uaa.com.vn.user.entites.User;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {

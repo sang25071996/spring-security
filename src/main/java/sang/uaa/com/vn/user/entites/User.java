@@ -1,4 +1,4 @@
-package sang.uaa.com.vn.entites;
+package sang.uaa.com.vn.user.entites;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +19,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import sang.uaa.com.vn.entites.BaseEntity;
 
 @Entity
 @Table(name = "USER", schema = "USERS")

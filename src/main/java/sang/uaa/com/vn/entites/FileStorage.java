@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
+import sang.uaa.com.vn.user.entites.User;
 
 @Entity
 @Table(name = "FILE_STORAGE", schema = "FILES")

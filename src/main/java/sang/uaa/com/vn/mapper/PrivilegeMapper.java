@@ -6,7 +6,7 @@ import java.util.Set;
 import org.mapstruct.Mapper;
 
 import sang.uaa.com.vn.dto.PrivilegeDto;
-import sang.uaa.com.vn.entites.Privilege;
+import sang.uaa.com.vn.user.entites.Privilege;
 
 @Mapper(componentModel = "spring")
 public interface PrivilegeMapper {

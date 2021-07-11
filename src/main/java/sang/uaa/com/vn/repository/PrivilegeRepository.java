@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import sang.uaa.com.vn.entites.Privilege;
-import sang.uaa.com.vn.entites.Role;
+import sang.uaa.com.vn.user.entites.Privilege;
+import sang.uaa.com.vn.user.entites.Role;
 
 @Repository
 public interface PrivilegeRepository extends JpaRepository<Privilege, Long> {

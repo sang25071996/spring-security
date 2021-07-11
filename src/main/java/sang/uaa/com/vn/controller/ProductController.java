@@ -16,34 +16,33 @@ import org.springframework.web.bind.annotation.RestController;
 import sang.uaa.com.vn.common.controller.BaseController;
 import sang.uaa.com.vn.common.dto.ResponJson;
 import sang.uaa.com.vn.constant.Constants;
-import sang.uaa.com.vn.dto.PrivilegeDto;
-import sang.uaa.com.vn.service.PrivilegeService;
+import sang.uaa.com.vn.dto.ProductDto;
+import sang.uaa.com.vn.service.ProductService;
 
 @RestController
-@RequestMapping(Constants.ApiURL.API_PRIVILEGE)
-public class PrivilegeController extends BaseController {
-
+@RequestMapping(Constants.ApiURL.API_PRODUCT)
+public class ProductController extends BaseController {
+	
 	@Autowired
-	private PrivilegeService privilegeService;
+	private ProductService productService;
 	
 	@PostMapping()
-	public ResponseEntity<ResponJson<PrivilegeDto>> save(@Valid @RequestBody PrivilegeDto privilegeDto) {
-		return getResponseEntity(privilegeService.create(privilegeDto));
+	public ResponseEntity<ResponJson<ProductDto>> save(@Valid @RequestBody ProductDto productDto) {
+		return getResponseEntity(productService.create(productDto));
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<ResponJson<PrivilegeDto>> getRoleById(@PathVariable Long id) {
-		return getResponseEntity(privilegeService.getById(id));
+	public ResponseEntity<ResponJson<ProductDto>> getById(@PathVariable Long id) {
+		return getResponseEntity(productService.getById(id));
 	}
 
 	@PutMapping()
-	public ResponseEntity<ResponJson<PrivilegeDto>> edit(@RequestBody PrivilegeDto privilegeDto) {
-		return getResponseEntity(privilegeService.edit(privilegeDto));
+	public ResponseEntity<ResponJson<ProductDto>> edit(@RequestBody ProductDto productDto) {
+		return getResponseEntity(productService.edit(productDto));
 	}
 	
 	@DeleteMapping()
 	public ResponseEntity<ResponJson<Boolean>> delete(@PathVariable Long id) {
-		return getResponseEntity(privilegeService.delete(id));
+		return getResponseEntity(productService.delete(id));
 	}
-
 }

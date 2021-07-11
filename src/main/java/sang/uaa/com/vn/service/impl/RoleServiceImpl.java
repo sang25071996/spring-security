@@ -31,8 +31,6 @@ import sang.uaa.com.vn.constant.Constants;
 import sang.uaa.com.vn.dto.PrivilegeDto;
 import sang.uaa.com.vn.dto.RoleDto;
 import sang.uaa.com.vn.dto.SystemPermission;
-import sang.uaa.com.vn.entites.Privilege;
-import sang.uaa.com.vn.entites.Role;
 import sang.uaa.com.vn.exception.BadRequestException;
 import sang.uaa.com.vn.exception.NotFoundException;
 import sang.uaa.com.vn.mapper.PrivilegeMapper;
@@ -40,6 +38,8 @@ import sang.uaa.com.vn.mapper.RoleMapper;
 import sang.uaa.com.vn.repository.PrivilegeRepository;
 import sang.uaa.com.vn.repository.RoleRepository;
 import sang.uaa.com.vn.service.RoleService;
+import sang.uaa.com.vn.user.entites.Privilege;
+import sang.uaa.com.vn.user.entites.Role;
 import sang.uaa.com.vn.utils.MessageUtils;
 
 @Service

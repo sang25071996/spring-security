@@ -25,10 +25,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import sang.uaa.com.vn.config.security.jwt.TokenProvider;
 import sang.uaa.com.vn.dto.LoginDto;
 import sang.uaa.com.vn.entites.Authorizer;
-import sang.uaa.com.vn.entites.Role;
 import sang.uaa.com.vn.jwt.payload.LoginRespone;
 import sang.uaa.com.vn.jwt.payload.Token;
 import sang.uaa.com.vn.service.impl.UserServiceImpl;
+import sang.uaa.com.vn.user.entites.Role;
 
 @Controller
 public class AuthenticationController {
