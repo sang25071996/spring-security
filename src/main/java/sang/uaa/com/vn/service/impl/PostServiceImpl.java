@@ -90,6 +90,7 @@ public class PostServiceImpl extends BaseService implements PostService {
 		if (!optional.isPresent()) {
 			throw new BadRequestException(new SysError(Constants.ERROR_DATA_NULL, new ErrorParam(ID)));
 		}
+		Post paragraphs = this.postRepository.getPragraphs("test1");
 		return postMapper.toDto(optional.get());
 	}
 	

@@ -90,6 +90,7 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 		if (!optional.isPresent()) {
 			throw new BadRequestException(new SysError(Constants.ERROR_DATA_NULL, new ErrorParam(ID)));
 		}
+		String test = this.productRepository.getProperties("hp");
 		return productMapper.toDto(optional.get());
 	}
 	
