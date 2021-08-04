@@ -31,6 +31,7 @@ public class Authorizer implements UserDetails {
 	
 	private static final long serialVersionUID = 1L;
 	private User user;
+	@Builder.Default
 	private List<String> privileges = new ArrayList<>();
 	
 	public Authorizer(User user) {
