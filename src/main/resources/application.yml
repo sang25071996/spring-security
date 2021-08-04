@@ -5,6 +5,9 @@ logging:
     root: INFO
     org.springframework: INFO
     sang.uaa.com.vn: TRACE
+    org.springframework.data.mongodb: DEBUG
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+    org.springframework.data.mongodb.repository.query: DEBUG
   pattern:
     console: "%d{HH:mm:ss.SSS} [%t] %-5level %C - %msg%n"
     
@@ -22,6 +25,17 @@ server:
   port: 9999
   servlet:
     context-path: /api
+    
+cloud:
+  aws:
+    region:
+      static: ap-southeast-1
+      auto: false
+    credentials:
+      access-key: AKIASUS2ERJZALQ6TTWY
+      secret-key: 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
+    end-point:
+      uri: https://sqs.ap-southeast-1.amazonaws.com/181651409522/conganh
 spring:
   profiles:
     active:

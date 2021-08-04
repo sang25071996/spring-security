@@ -35,6 +35,7 @@ public final class Constants {
 		public static final String API_PRODUCT = "product";
 		public static final String API_POST = "post";
 		public static final String API_CATEGRORY = "categrory";
+		public static final String API_NOTIFICATION = "notification";
 		
 	}
 

@@ -11,6 +11,9 @@ services:
  
   myapp:
     image: sang-uaa-service:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     depends_on:
     - db
     environment:

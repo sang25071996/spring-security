@@ -91,6 +91,7 @@ public class PostServiceImpl extends BaseService implements PostService {
 			throw new BadRequestException(new SysError(Constants.ERROR_DATA_NULL, new ErrorParam(ID)));
 		}
 		Post paragraphs = this.postRepository.getPragraphs("test1");
+		String[] a = this.postRepository.getPragraphs();
 		return postMapper.toDto(optional.get());
 	}
 	

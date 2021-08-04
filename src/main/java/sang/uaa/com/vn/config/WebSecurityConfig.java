@@ -87,8 +87,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					.and().cors().configurationSource(corsConfigurationSource()).and()
 					.authorizeRequests()
 					.antMatchers("/authenticate").permitAll()
+					.antMatchers("/ws").permitAll()
 					.antMatchers("/logout").permitAll()
-					.antMatchers("//logout-success").permitAll()
+					.antMatchers("/logout-success").permitAll()
 					.anyRequest().authenticated()
 					.and().csrf().disable().formLogin().disable();
 		//TODO: Disable session jwt
