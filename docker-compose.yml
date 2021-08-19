@@ -1,5 +1,5 @@
 # Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
-version: '3.0'
+version: '3.3'
 networks:
   backend:
    name: app
@@ -10,14 +10,19 @@ volumes:
 services:
  
   myapp:
-    image: sang-uaa-service:latest
+    image: sang-uaa-test:latest
     build:
       context: .
       dockerfile: Dockerfile
     depends_on:
     - db
     environment:
-        - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/sang-uaa-service
+        - "SPRING_PROFILES_ACTIVE=dev"
+        - DB_USERNAME=postgres
+        - DB_DATABASE=sang-uaa-service
+        - DB_PORT=5432
+        - DB_PASSWORD=123456
+        - DB_HOST=db
     ports:
         - "9999:9999"
     networks:
