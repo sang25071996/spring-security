@@ -1,10 +1,11 @@
 package sang.uaa.com.vn.mongodb;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Setter
 @Getter
@@ -13,6 +14,6 @@ public class Category {
 
     @Id
     private String id;
-    @Field(name = "name")
+    @Field(value = "name")
     private String name;
 }

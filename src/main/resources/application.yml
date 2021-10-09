@@ -8,6 +8,8 @@ logging:
     org.springframework.data.mongodb: DEBUG
     org.springframework.data.mongodb.core.MongoTemplate: DEBUG
     org.springframework.data.mongodb.repository.query: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
   pattern:
     console: "%d{HH:mm:ss.SSS} [%t] %-5level %C - %msg%n"
     
@@ -19,10 +21,10 @@ jwt:
 #config folder upload
 file:
   upload:
-    path: classpath:file
+    path: ${UPLOAD_FILE:D:/uploads}
     
 server:
-  port: 9999
+  port: 9998
   servlet:
     context-path: /api
     
@@ -118,7 +120,7 @@ spring:
     show-sql: true
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${DB_HOST:10.0.2.15}:${DB_PORT:5433}/${DB_DATABASE:sang-uaa-service}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_DATABASE:sang-uaa-service}
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:123456}
     testOnBorrow: true

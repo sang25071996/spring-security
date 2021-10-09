@@ -51,4 +51,5 @@ public class Product extends BaseEntity implements Serializable {
 	@ManyToOne()
 	@JoinColumn(name = "CATEGRORIE_ID")
 	private ProductCategrories categrories;
+
 }

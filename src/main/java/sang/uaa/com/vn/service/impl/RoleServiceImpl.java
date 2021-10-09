@@ -8,7 +8,6 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -191,11 +190,11 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	public Page<RoleDto> filterPaging(RequestPagingBuilder<RoleDto> requestPagingBuilder) {
 		
 		String name = "";
-		String[] fields = { "id" };
+		String fields = "id";
 		
 		name = defaultIfNotBlank(requestPagingBuilder.getFilters().getName(), name);
 		
-		if (ArrayUtils.isEmpty(requestPagingBuilder.getFieldsOrderBy())) {
+		if (StringUtils.isEmpty(requestPagingBuilder.getFieldsOrderBy())) {
 			fields = requestPagingBuilder.getFieldsOrderBy();
 		}
 		
