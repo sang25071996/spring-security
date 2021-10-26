@@ -13,6 +13,9 @@ import sang.uaa.com.vn.exception.BadRequestException;
 
 public class PrivilegeValidator implements ValidatorService {
 	
+	private static final String NAME = "name";
+	private static final String PRIVILEGE_DTO = "PrivilegeDto";
+
 	@Override
 	public void validate(String validator, Map<String, Object> map) {
 		Object object = map.get(validator);
@@ -32,18 +35,18 @@ public class PrivilegeValidator implements ValidatorService {
 	
 	public void validateCreateRequest(PrivilegeDto privilegeDto) {
 		if (ObjectUtils.isEmpty(privilegeDto)) {
-			throw new BadRequestException(new SysError(Constants.ERROR_DATA_EMPTY, new ErrorParam("PrivilegeDto")));
+			throw new BadRequestException(new SysError(Constants.ERROR_DATA_EMPTY, new ErrorParam(PRIVILEGE_DTO)));
 		}
 		
 		if (StringUtils.isBlank(privilegeDto.getName())) {
-			throw new BadRequestException(new SysError(Constants.ERROR_DATA_EMPTY, new ErrorParam("name")));
+			throw new BadRequestException(new SysError(Constants.ERROR_DATA_EMPTY, new ErrorParam(NAME)));
 		}
 	}
 	
 	public void validateUpdateRequest(PrivilegeDto privilegeDto) {
 		
 		if (StringUtils.isBlank(privilegeDto.getName())) {
-			throw new BadRequestException(new SysError(Constants.ERROR_DATA_EMPTY, new ErrorParam("name")));
+			throw new BadRequestException(new SysError(Constants.ERROR_DATA_EMPTY, new ErrorParam(NAME)));
 		}
 	}
 }

@@ -1,14 +1,15 @@
 package sang.uaa.com.vn.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,21 +29,24 @@ import sang.uaa.com.vn.service.UserService;
 import sang.uaa.com.vn.user.entites.Role;
 import sang.uaa.com.vn.user.entites.User;
 import sang.uaa.com.vn.utils.MessageUtils;
+import sang.uaa.com.vn.validation.UserValidator;
+import sang.uaa.com.vn.validation.ValidatorService;
 
 @Service
 public class UserServiceImpl extends BaseService implements UserService, UserDetailsService {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 	
-	@Autowired
-	UserRepository userRepository;
-	@Autowired
-	PasswordEncoder passwordEncoder;
+	private final UserRepository userRepository;
+	private final PasswordEncoder passwordEncoder;
+	private final UserMapper userMapper;
+	private final ValidatorService validator;
 	
-	private UserMapper userMapper;
-	
-	public UserServiceImpl() {
-		this.userMapper = getInstanceMappger(UserMapper.class);
+	public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, UserMapper userMapper) {
+		this.userRepository = userRepository;
+		this.passwordEncoder = passwordEncoder;
+		this.userMapper = userMapper;
+		this.validator = new UserValidator();
 	}
 	
 	@Override
@@ -67,6 +71,9 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 	@Override
 	public UserDto create(UserDto userDto) {
 		
+		Map<String, Object> map = new HashMap<>();
+		map.put(Constants.CREATE, userDto);
+		this.validator.validate(Constants.CREATE, map);
 		User user = new User();
 		user.setUsername(userDto.getUsername());
 		user.setPassword(passwordEncode(userDto.getPassword()));
@@ -128,18 +135,15 @@ public class UserServiceImpl extends BaseService implements UserService, UserDet
 	
 	@Override
 	public UserDto edit(UserDto e) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
 	public boolean delete(Long id) {
-		
 		User user = this.userRepository.getOne(id);
-		if (ObjectUtils.isEmpty(user)) {
-			throw new NotFoundException("User not Found in database");
-		}
-		
+		Map<String, Object> map = new HashMap<>();
+		map.put(Constants.DELETE, user);
+		this.validator.validate(Constants.DELETE, map);
 		this.userRepository.delete(user);
 		
 		return true;

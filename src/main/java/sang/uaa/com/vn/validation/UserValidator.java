@@ -8,26 +8,26 @@ import org.apache.commons.lang3.StringUtils;
 import sang.uaa.com.vn.common.dto.ErrorParam;
 import sang.uaa.com.vn.common.dto.SysError;
 import sang.uaa.com.vn.constant.Constants;
-import sang.uaa.com.vn.dto.PrivilegeDto;
+import sang.uaa.com.vn.dto.UserDto;
 import sang.uaa.com.vn.exception.BadRequestException;
+import sang.uaa.com.vn.user.entites.User;
 
 public class UserValidator implements ValidatorService {
+	
+	private static final String PRIVILEGE_DTO = "PrivilegeDto";
+	private static final String USER_NAME = "username";
 
-	private static final String UPDATE = "UPDATE";
-	
-	private static final String CREATE = "CREATE";
-	
 	@Override
 	public void validate(String validator, Map<String, Object> map) {
 		
 		Object object = map.get(validator);
 		switch (validator) {
-			case CREATE:
-				validateCreateRequest((PrivilegeDto) object);
+			case Constants.CREATE:
+				validateCreateRequest((UserDto) object);
 				break;
 			
-			case UPDATE:
-				validateUpdateRequest((PrivilegeDto) object);
+			case Constants.DELETE:
+				validateDeleteRequest((User) object);
 				break;
 			
 			default:
@@ -35,20 +35,20 @@ public class UserValidator implements ValidatorService {
 		}
 	}
 	
-	public void validateCreateRequest(PrivilegeDto privilegeDto) {
-		if (ObjectUtils.isEmpty(privilegeDto)) {
-			throw new BadRequestException(new SysError(Constants.ERROR_DATA_EMPTY, new ErrorParam("PrivilegeDto")));
+	public void validateCreateRequest(UserDto userDto) {
+		if (ObjectUtils.isEmpty(userDto)) {
+			throw new BadRequestException(new SysError(Constants.ERROR_DATA_EMPTY, new ErrorParam(PRIVILEGE_DTO)));
 		}
 		
-		if (StringUtils.isBlank(privilegeDto.getName())) {
-			throw new BadRequestException(new SysError(Constants.ERROR_DATA_EMPTY, new ErrorParam("name")));
+		if (StringUtils.isBlank(userDto.getUsername())) {
+			throw new BadRequestException(new SysError(Constants.ERROR_DATA_EMPTY, new ErrorParam(USER_NAME)));
 		}
 	}
 	
-	public void validateUpdateRequest(PrivilegeDto privilegeDto) {
+	public void validateDeleteRequest(User user) {
 		
-		if (StringUtils.isBlank(privilegeDto.getName())) {
-			throw new BadRequestException(new SysError(Constants.ERROR_DATA_EMPTY, new ErrorParam("name")));
+		if (ObjectUtils.isEmpty(user)) {
+			throw new BadRequestException(new SysError(Constants.ERROR_DATA_IS_NOT_EXIST, new ErrorParam(USER_NAME)));
 		}
 	}
 }

@@ -15,6 +15,8 @@ import sang.uaa.com.vn.user.entites.Role;
 
 public class RoleValidator implements ValidatorService {
 	
+	private static final String NAME = "name";
+
 	@Override
 	public void validate(String validator, Map<String, Object> map) {
 		Object object = map.get(validator);
@@ -37,7 +39,7 @@ public class RoleValidator implements ValidatorService {
 	
 	private void validateCreateRequest(String name) {
 		if (StringUtils.isEmpty(name)) {
-			throw new BadRequestException(new SysError(Constants.ERROR_DATA_EMPTY, new ErrorParam("name")));
+			throw new BadRequestException(new SysError(Constants.ERROR_DATA_EMPTY, new ErrorParam(NAME)));
 		}
 		
 	}
@@ -47,7 +49,7 @@ public class RoleValidator implements ValidatorService {
 			throw new NotFoundException(new SysError(Constants.ERROR_DATA_NULL, new ErrorParam(Constants.ID_STR)));
 		}
 		if (StringUtils.isEmpty(roleDto.getName())) {
-			throw new NotFoundException(new SysError(Constants.ERROR_DATA_NULL, new ErrorParam("name")));
+			throw new NotFoundException(new SysError(Constants.ERROR_DATA_NULL, new ErrorParam(NAME)));
 		}
 	}
 	
