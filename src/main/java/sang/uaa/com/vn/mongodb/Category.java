@@ -14,6 +14,6 @@ public class Category {
 
     @Id
     private String id;
-    @Field(value = "name")
+    @Field(name = "name")
     private String name;
 }

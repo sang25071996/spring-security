@@ -1,13 +1,12 @@
 package sang.uaa.com.vn.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import sang.uaa.com.vn.common.dto.ErrorParam;
@@ -20,27 +19,32 @@ import sang.uaa.com.vn.mapper.PrivilegeMapper;
 import sang.uaa.com.vn.repository.PrivilegeRepository;
 import sang.uaa.com.vn.service.PrivilegeService;
 import sang.uaa.com.vn.user.entites.Privilege;
+import sang.uaa.com.vn.validation.PrivilegeValidator;
+import sang.uaa.com.vn.validation.ValidatorService;
 
-@Service(value = "privilegeServiceImpl")
+@Service
 public class PrivilegeServiceImpl extends BaseService implements PrivilegeService {
 
 	private static final String PRIVILEGE = "Privilege";
-	@Autowired
-	private PrivilegeRepository privilegeRepository;
-	@Autowired
-	private PrivilegeMapper privilegeMapper;
+	
+	private final PrivilegeRepository privilegeRepository;
+	private final PrivilegeMapper privilegeMapper;
+	private final ValidatorService validator;
+	
+	public PrivilegeServiceImpl(PrivilegeRepository privilegeRepository, PrivilegeMapper privilegeMapper) {
+		this.privilegeRepository = privilegeRepository;
+		this.privilegeMapper = privilegeMapper;
+		this.validator = new PrivilegeValidator();
+	}
 	
 	@Transactional
 	@Override
 	public PrivilegeDto create(PrivilegeDto privilegeDto) {
 		
-		if (ObjectUtils.isEmpty(privilegeDto)) {
-			throw new BadRequestException(new SysError(Constants.ERROR_DATA_EMPTY, new ErrorParam("PrivilegeDto")));
-		}
+		Map<String, Object> map = new HashMap<>();
+		map.put(Constants.CREATE, privilegeDto);
+		validator.validate(Constants.CREATE, map);
 		
-		if (StringUtils.isBlank(privilegeDto.getName())) {
-			throw new BadRequestException(new SysError(Constants.ERROR_DATA_EMPTY, new ErrorParam("name")));
-		}
 		Privilege privilege = new Privilege();
 		privilege.setName(privilegeDto.getName());
 		setCreateInfo(privilege);
@@ -53,13 +57,9 @@ public class PrivilegeServiceImpl extends BaseService implements PrivilegeServic
 	@Override
 	public PrivilegeDto edit(PrivilegeDto privilegeDto) {
 
-		if (ObjectUtils.isEmpty(privilegeDto)) {
-			throw new BadRequestException(new SysError(Constants.ERROR_DATA_EMPTY, new ErrorParam("PrivilegeDto")));
-		}
-		
-		if (StringUtils.isBlank(privilegeDto.getName())) {
-			throw new BadRequestException(new SysError(Constants.ERROR_DATA_EMPTY, new ErrorParam("name")));
-		}
+		Map<String, Object> map = new HashMap<>();
+		map.put(Constants.UPDATE, privilegeDto);
+		validator.validate(Constants.UPDATE, map);
 		Optional<Privilege> optionalPrivilege = this.privilegeRepository.findById(privilegeDto.getId());
 		if (!optionalPrivilege.isPresent()) {
 			throw new BadRequestException(new SysError(Constants.ERROR_DATA_NULL, new ErrorParam(PRIVILEGE)));

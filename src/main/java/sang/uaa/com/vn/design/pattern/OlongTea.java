@@ -1,4 +1,4 @@
-package sang.uaa.com.vn.service.impl;
+package sang.uaa.com.vn.design.pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

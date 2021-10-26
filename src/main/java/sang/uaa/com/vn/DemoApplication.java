@@ -10,7 +10,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import sang.uaa.com.vn.common.MessageService;
-import sang.uaa.com.vn.service.impl.TeaSeviceImpl;
+import sang.uaa.com.vn.design.pattern.TeaSeviceImpl;
 
 //@SpringBootApplication(exclude = { ContextStackAutoConfiguration.class })
 @SpringBootApplication

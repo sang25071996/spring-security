@@ -10,8 +10,9 @@ logging:
     org.springframework.data.mongodb.repository.query: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.springframework.cloud.sleuth: trace
   pattern:
-    console: "%d{HH:mm:ss.SSS} [%t] %-5level %C - %msg%n"
+    console: "%d{HH:mm:ss.SSS} [%t] %-5level %X{traceId:-} %X{spanId:-} ${PID:-} %C - %msg%n"
     
 #secret key generate token jwt
 jwt:
@@ -24,11 +25,13 @@ file:
     path: ${UPLOAD_FILE:D:/uploads}
     
 server:
-  port: 9998
+  port: 9999
   servlet:
     context-path: /api
     
 spring:
+  application:
+    name: uaa-service
 #config upload file
   servlet:
     multipart:

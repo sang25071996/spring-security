@@ -54,6 +54,9 @@ public final class Constants {
 	public static final String USER_STR = "User";
 	public static final String UNDERLINE = "_";
 	public static final String MEGA_BTYES = "MB";
+	public static final String UPDATE = "UPDATE";
+	public static final String CREATE = "CREATE";
+	public static final String DELETE = "DELETE";
 	
 	/**
 	 * Define Error Param

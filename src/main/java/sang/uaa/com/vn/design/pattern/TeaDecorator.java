@@ -1,4 +1,4 @@
-package sang.uaa.com.vn.service.impl;
+package sang.uaa.com.vn.design.pattern;
 
 import sang.uaa.com.vn.service.Tea;
 

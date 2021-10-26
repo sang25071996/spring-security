@@ -1,8 +1,10 @@
 package sang.uaa.com.vn.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -10,9 +12,6 @@ import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,7 +20,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import sang.uaa.com.vn.common.MessageEnum;
 import sang.uaa.com.vn.common.dto.ErrorParam;
 import sang.uaa.com.vn.common.dto.RequestPagingBuilder;
 import sang.uaa.com.vn.common.dto.SysError;
@@ -39,27 +37,32 @@ import sang.uaa.com.vn.repository.RoleRepository;
 import sang.uaa.com.vn.service.RoleService;
 import sang.uaa.com.vn.user.entites.Privilege;
 import sang.uaa.com.vn.user.entites.Role;
-import sang.uaa.com.vn.utils.MessageUtils;
+import sang.uaa.com.vn.validation.RoleValidator;
+import sang.uaa.com.vn.validation.ValidatorService;
 
 @Service
 public class RoleServiceImpl extends BaseService implements RoleService {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(RoleServiceImpl.class);
-	@Autowired
-	private RoleRepository roleRepository;
-	@Autowired
-	private RoleMapper roleMapper;
-	@Autowired
-	private PrivilegeMapper privilegeMapper;
-	@Autowired
-	private PrivilegeRepository privilegeRepository;
+	private final RoleRepository roleRepository;
+	private final RoleMapper roleMapper;
+	private final PrivilegeMapper privilegeMapper;
+	private final PrivilegeRepository privilegeRepository;
+	private final ValidatorService validator;
 	
-	public RoleServiceImpl() {
-//		this.roleMapper = getInstanceMappger(RoleMapper.class);
+	public RoleServiceImpl(RoleRepository roleRepository, RoleMapper roleMapper, PrivilegeMapper privilegeMapper,
+			PrivilegeRepository privilegeRepository) {
+		this.roleRepository = roleRepository;
+		this.roleMapper = roleMapper;
+		this.privilegeMapper = privilegeMapper;
+		this.privilegeRepository = privilegeRepository;
+		this.validator = new RoleValidator();
 	}
 	
 	@Override
 	public RoleDto create(RoleDto roleDto) {
+		Map<String, Object> map = new HashMap<>();
+		map.put(Constants.CREATE, roleDto.getName());
+		this.validator.validate(Constants.CREATE, map);
 		Role role = new Role();
 		role.setName(convertRole(roleDto.getName()));
 		setCreateInfo(role);
@@ -88,10 +91,7 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 		
 		Role role = roleRepository.findByRoleId(id);
 		if (ObjectUtils.isEmpty(role)) {
-			String message = MessageUtils.getMessage(MessageEnum.MSGCODE3.getValue(), Constants.ROLE_STR);
-			LOG.error(message);
-			String idMessage = MessageUtils.getMessage(MessageEnum.MSGCODE2.getValue(), Constants.ID_STR);
-			throw new NotFoundException(new SysError(idMessage, new ErrorParam(Constants.ID_STR)));
+			throw new NotFoundException(new SysError(Constants.ERROR_DATA_IS_NOT_EXIST, new ErrorParam(Constants.ID_STR)));
 		}
 		return this.roleMapper.roleToRoleDto(role);
 		
@@ -114,16 +114,13 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	@Override
 	public RoleDto edit(RoleDto roleDto) {
 		
-		Role role;
-		if (ObjectUtils.isEmpty(roleDto.getId())) {
-			String message = MessageUtils.getMessage(MessageEnum.MSGCODE2.getValue(), roleDto.getId().toString());
-			throw new NotFoundException(new SysError(message, new ErrorParam(Constants.ID_STR)));
-		}
+		Map<String, Object> map = new HashMap<>();
+		map.put(Constants.UPDATE, roleDto);
+		this.validator.validate(Constants.UPDATE, map);
 		
-		role = roleRepository.findByRoleId(roleDto.getId());
+		Role role = roleRepository.findByRoleId(roleDto.getId());
 		if (ObjectUtils.isEmpty(role)) {
-			String message = MessageUtils.getMessage(MessageEnum.MSGCODE2.getValue(), Constants.ROLE_STR);
-			throw new NotFoundException(new SysError(message, new ErrorParam(Constants.ID_STR)));
+			throw new NotFoundException(new SysError(Constants.ERROR_DATA_IS_NOT_EXIST, new ErrorParam(Constants.ID_STR)));
 			
 		}
 		
@@ -173,10 +170,9 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 	public boolean delete(Long id) {
 		
 		Role role = this.roleRepository.findByRoleId(id);
-		if (ObjectUtils.isEmpty(role)) {
-			throw new NotFoundException("Role not found in database");
-		}
-		
+		Map<String, Object> map = new HashMap<>();
+		map.put(Constants.DELETE, role);
+		this.validator.validate(Constants.DELETE, map);
 		this.roleRepository.delete(role);
 		
 		return true;
