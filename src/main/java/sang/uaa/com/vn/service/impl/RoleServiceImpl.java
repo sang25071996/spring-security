@@ -91,7 +91,8 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 		
 		Role role = roleRepository.findByRoleId(id);
 		if (ObjectUtils.isEmpty(role)) {
-			throw new NotFoundException(new SysError(Constants.ERROR_DATA_IS_NOT_EXIST, new ErrorParam(Constants.ID_STR)));
+			throw new NotFoundException(
+					new SysError(Constants.ERROR_DATA_IS_NOT_EXIST, new ErrorParam(Constants.ID_STR)));
 		}
 		return this.roleMapper.roleToRoleDto(role);
 		
@@ -120,7 +121,8 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 		
 		Role role = roleRepository.findByRoleId(roleDto.getId());
 		if (ObjectUtils.isEmpty(role)) {
-			throw new NotFoundException(new SysError(Constants.ERROR_DATA_IS_NOT_EXIST, new ErrorParam(Constants.ID_STR)));
+			throw new NotFoundException(
+					new SysError(Constants.ERROR_DATA_IS_NOT_EXIST, new ErrorParam(Constants.ID_STR)));
 			
 		}
 		
@@ -188,9 +190,11 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 		String name = "";
 		String fields = "id";
 		
-		name = defaultIfNotBlank(requestPagingBuilder.getFilters().getName(), name);
+		if (StringUtils.isNotEmpty(fields)) {
+			name = requestPagingBuilder.getFilters().getName();
+		}
 		
-		if (StringUtils.isEmpty(requestPagingBuilder.getFieldsOrderBy())) {
+		if (StringUtils.isNotEmpty(requestPagingBuilder.getFieldsOrderBy())) {
 			fields = requestPagingBuilder.getFieldsOrderBy();
 		}
 		

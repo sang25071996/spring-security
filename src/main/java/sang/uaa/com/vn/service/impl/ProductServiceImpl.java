@@ -38,7 +38,7 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 		map.put(productDto, ID);
 		map.put(productDto.getName(), NAME);
 		map.put(productDto.getCategrories().getId(), ID);
-		validatorObjectIsEmpty(map);
+
 		Optional<ProductCategrories> optional = this.productCategroriesRepository.findById(productDto.getCategrories().getId());
 		if (!optional.isPresent()) {
 			throw new BadRequestException(new SysError(Constants.ERROR_DATA_NULL, new ErrorParam(ID)));
@@ -57,7 +57,6 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 		map.put(productDto, ID);
 		map.put(productDto.getName(), NAME);
 		map.put(productDto.getCategrories().getId(), ID);
-		validatorObjectIsEmpty(map);
 		Optional<ProductCategrories> optional = this.productCategroriesRepository.findById(productDto.getCategrories().getId());
 		if (!optional.isPresent()) {
 			throw new BadRequestException(new SysError(Constants.ERROR_DATA_NULL, new ErrorParam(ID)));

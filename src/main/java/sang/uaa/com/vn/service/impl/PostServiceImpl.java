@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.apache.commons.collections4.map.HashedMap;
 import org.springframework.stereotype.Service;
 
-import lombok.RequiredArgsConstructor;
 import sang.uaa.com.vn.common.dto.ErrorParam;
 import sang.uaa.com.vn.common.dto.SysError;
 import sang.uaa.com.vn.common.service.BaseService;
@@ -19,26 +18,35 @@ import sang.uaa.com.vn.mapper.PostMapper;
 import sang.uaa.com.vn.repository.CategroryRepository;
 import sang.uaa.com.vn.repository.PostRepository;
 import sang.uaa.com.vn.service.PostService;
+import sang.uaa.com.vn.validation.PostValidator;
+import sang.uaa.com.vn.validation.ValidatorService;
 
-@RequiredArgsConstructor
 @Service
 public class PostServiceImpl extends BaseService implements PostService {
 	
 	private static final String NAME = "name";
 	private static final String ID = "id";
 	
+	public PostServiceImpl(CategroryRepository categroryRepository, PostRepository postRepository,
+			PostMapper postMapper, PostValidator postValidator) {
+		super();
+		this.categroryRepository = categroryRepository;
+		this.postRepository = postRepository;
+		this.postMapper = postMapper;
+		this.validator = postValidator;
+	}
+	
 	private final CategroryRepository categroryRepository;
 	private final PostRepository postRepository;
 	private final PostMapper postMapper;
+	private final ValidatorService validator;
 	
 	@Override
 	public PostDto create(PostDto postDto) {
 		
-		Map<Object, String> map = new HashedMap<>();
-		map.put(postDto, ID);
-		map.put(postDto.getName(), NAME);
-		map.put(postDto.getCategroryDto().getId(), ID);
-		validatorObjectIsEmpty(map);
+		Map<String, Object> map = new HashedMap<>();
+		map.put(Constants.CREATE, postDto);
+		validator.validate(Constants.CREATE, map);
 		Optional<Categrory> optional = this.categroryRepository.findById(postDto.getCategroryDto().getId());
 		if (!optional.isPresent()) {
 			throw new BadRequestException(new SysError(Constants.ERROR_DATA_NULL, new ErrorParam(ID)));
@@ -53,11 +61,9 @@ public class PostServiceImpl extends BaseService implements PostService {
 	@Override
 	public PostDto edit(PostDto postDto) {
 		
-		Map<Object, String> map = new HashedMap<>();
-		map.put(postDto, ID);
-		map.put(postDto.getName(), NAME);
-		map.put(postDto.getCategroryDto().getId(), ID);
-		validatorObjectIsEmpty(map);
+		Map<String, Object> map = new HashedMap<>();
+		map.put(Constants.UPDATE, postDto);
+		validator.validate(Constants.UPDATE, map);
 		Optional<Categrory> optional = this.categroryRepository.findById(postDto.getCategroryDto().getId());
 		if (!optional.isPresent()) {
 			throw new BadRequestException(new SysError(Constants.ERROR_DATA_NULL, new ErrorParam(ID)));
